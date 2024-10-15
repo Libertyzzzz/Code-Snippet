@@ -50,17 +50,53 @@ public class CodeDebug {
 
     public static void customizeSort() {
         List<Integer> list = new ArrayList<>();
-         list.add(-5);
-         list.add(-7);
-         list.add(3);
-         Collections.sort(list, new Comparator<Integer>() {
-             @Override
-             public int compare(Integer o1, Integer o2) {
-                 return o2 - o1;
-             }
-         });
+        list.add(-5);
+        list.add(-7);
+        list.add(3);
+        Collections.sort(list, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
         System.out.println(list);
-        
+
+    }
+
+    // 旋转矩阵打印
+    public static List<Integer> spiralOrder(int[][] matrix) {
+        int rows = matrix.length, cols = matrix[0].length;
+        int top = 0, bottom = rows - 1, left = 0, right = cols - 1;
+        List<Integer> res = new ArrayList<>();
+        while (left <= right && top <= bottom) {
+            // 往右遍历
+            for (int i = left; i <= right; i++) {
+                res.add(matrix[left][i]);
+            }
+            top++;
+            // 往下遍历
+            for (int i = top; i <= bottom; i++) {
+                res.add(matrix[i][right]);
+            }
+            right--;
+            // 往左遍历
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    res.add(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+
+            // 往上遍历
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    res.add(matrix[i][left]);
+                }
+                left++;
+            }
+
+        }
+        return res;
     }
 
     public static int minSubArrayLen(int target, int[] nums) {
@@ -113,16 +149,63 @@ public class CodeDebug {
 
     }
 
+    // 旋转图像
+    public static void rotate(int[][] matrix) {
+        // int n = matrix.length;
+        // int[][] rotatedMatrix = new int[n][n];
+        // for(int i = 0; i < n; i++){
+        //     for(int j = n - 1; j >= 0; j--){
+        //         rotatedMatrix[i][n -1 -j] = matrix[j][i];
+        //     }
+        // }
+
+
+        // for(int i = 0; i < n; i++){
+        //     // System.out.println(Arrays.toString(rotatedMatrix[i]));
+        //     matrix[i] = Arrays.copyOf(rotatedMatrix[i], n);
+        // }
+
+
+        // 优化
+        // 1. 沿着中轴线水平翻转
+        // 2. 对角线翻转
+        optimized(matrix);
+
+
+    }
+
+    public static void optimized(int[][] matrix){
+        int n = matrix.length;
+        for(int i = 0; i < n / 2; i++){
+            for(int j = 0; j < n; j++){
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[n-1-i][j];
+                matrix[n-1-i][j] = temp;
+            }
+        }
+        for(int i = 0; i < n; i++){
+            for(int j = i + 1; j < n; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+    }
 
 
     public static void main(String[] args) {
         int[] nums = {12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12};
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         int target = 213;
         String s = "qrsvbspk";
         // threeSum(nums);
         // minSubArrayLen(target, nums);
         // lengthOfLongestSubstring(s);
-        customizeSort();
+        // customizeSort();
+        spiralOrder(matrix);
+
+        int[] arr = Arrays.copyOf(nums, 12);
+        System.out.println(Arrays.toString(arr));
 
     }
 
