@@ -5,6 +5,10 @@ import com.xu.code.practice.entity.GeneralEntity;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.*;
 
 @Component
@@ -76,19 +80,18 @@ public class CompletableFutureDemo {
         System.out.println("计算结果:" + res + "" + "耗时:" + (System.currentTimeMillis() - startFuture));
 
         long startCompletableFuture = System.currentTimeMillis();
-        final long[] mainThreadRes = {0};
+        List<Integer> shareList = new ArrayList<>();
         CompletableFuture<Long> completableFuture = CompletableFuture.supplyAsync(() -> {
-            for(int i = 0; i < 5; i++){
-                ++mainThreadRes[0];
-            }
+            shareList.add(1);
             return fibnacci(45);
         }, threadPool);
-        System.out.println(mainThreadRes[0]);
+        // 主线程睡眠，等待 CompletableFuture 完成
+        // Thread.sleep(2000); // 在这里确保主线程等待一定时间以观察输出
+        // completableFuture.join();
+        System.out.println (shareList);
         completableFuture.thenAccept(r -> {
             System.out.println("计算结果:" + r + "" + "耗时:" + (System.currentTimeMillis() - startCompletableFuture));
         });
-        // 主线程睡眠，等待 CompletableFuture 完成
-        Thread.sleep(20); // 在这里确保主线程等待一定时间以观察输出
 
         threadPool.shutdown();
 

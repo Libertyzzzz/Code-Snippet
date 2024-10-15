@@ -22,11 +22,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fdf79da-d054-4e72-989d-819406459a88" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/common/ThreadPoolComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/thread/CompletableFutureDemo.java" afterDir="false" />
+    <list default="true" id="6fdf79da-d054-4e72-989d-819406459a88" name="Default Changelist" comment="feature/JUC: Completable Future practice">
+      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/proxy/DynamicHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/proxy/DynamicProxyDemoClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/proxy/DynamicProxyHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/proxy/ReflectionDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/proxy/StaticProxyDemoClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/service/IExecutionAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/service/impl/ProxyExecutionAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/service/impl/RealExecutionAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/entity/GeneralEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/entity/GeneralEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/thread/CompletableFutureDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/thread/CompletableFutureDemo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +43,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -62,7 +70,25 @@
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
-  <component name="RunManager" selected="Application.CompletableFutureDemo">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xu.code.practice.proxy" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.CodeDebug">
+    <configuration name="CodeDebug" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.algorithm.CodeDebug" />
+      <module name="code-practice-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xu.code.practice.algorithm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CompletableFutureDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.thread.CompletableFutureDemo" />
       <module name="code-practice-service" />
@@ -76,12 +102,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GeneralEntity" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.entity.GeneralEntity" />
+    <configuration name="DynamicProxyDemoClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.proxy.DynamicProxyDemoClient" />
       <module name="code-practice-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.xu.code.practice.entity.*" />
+          <option name="PATTERN" value="com.xu.code.practice.proxy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.proxy.ReflectionDemo" />
+      <module name="code-practice-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xu.code.practice.proxy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StaticProxyDemoClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.proxy.StaticProxyDemoClient" />
+      <module name="code-practice-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xu.code.practice.proxy.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -102,8 +154,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CodeDebug" />
+        <item itemvalue="Application.DynamicProxyDemoClient" />
+        <item itemvalue="Application.ReflectionDemo" />
+        <item itemvalue="Application.StaticProxyDemoClient" />
         <item itemvalue="Application.CompletableFutureDemo" />
-        <item itemvalue="Application.GeneralEntity" />
       </list>
     </recent_temporary>
   </component>
@@ -117,8 +172,16 @@
       <updated>1728568583691</updated>
       <workItem from="1728568585536" duration="2495000" />
       <workItem from="1728710896069" duration="2687000" />
-      <workItem from="1728716124345" duration="9816000" />
+      <workItem from="1728716124345" duration="29601000" />
     </task>
+    <task id="LOCAL-00001" summary="feature/JUC: Completable Future practice">
+      <created>1728734915480</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728734915480</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,51 +199,55 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feature/JUC: Completable Future practice" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature/JUC: Completable Future practice" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="548" y="110" key="#com.intellij.ide.util.MemberChooser" timestamp="1728717388691">
+    <state x="548" y="110" key="#com.intellij.ide.util.MemberChooser" timestamp="1728895560791">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="548" y="110" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1728717388691" />
+    <state x="548" y="110" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1728895560791" />
     <state width="257" height="380" key="Git.Branch.Popup" timestamp="1728569451538">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state width="257" height="380" key="Git.Branch.Popup/0.0.1536.816@0.0.1536.816" timestamp="1728569451538" />
-    <state width="1493" height="244" key="GridCell.Tab.0.bottom" timestamp="1728724993458">
+    <state width="1493" height="224" key="GridCell.Tab.0.bottom" timestamp="1728898613838">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1728724993458" />
-    <state width="1493" height="244" key="GridCell.Tab.0.center" timestamp="1728724993457">
+    <state width="1493" height="224" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1728898613838" />
+    <state width="1493" height="224" key="GridCell.Tab.0.center" timestamp="1728898613837">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1728724993457" />
-    <state width="1493" height="244" key="GridCell.Tab.0.left" timestamp="1728724993457">
+    <state width="1493" height="224" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1728898613837" />
+    <state width="1493" height="224" key="GridCell.Tab.0.left" timestamp="1728898613837">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1728724993457" />
-    <state width="1493" height="244" key="GridCell.Tab.0.right" timestamp="1728724993458">
+    <state width="1493" height="224" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1728898613837" />
+    <state width="1493" height="224" key="GridCell.Tab.0.right" timestamp="1728898613837">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1728724993458" />
-    <state width="1386" height="250" key="GridCell.Tab.1.bottom" timestamp="1728713629994">
+    <state width="1493" height="224" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1728898613837" />
+    <state width="1493" height="118" key="GridCell.Tab.1.bottom" timestamp="1728894070855">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="250" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1728713629994" />
-    <state width="1386" height="250" key="GridCell.Tab.1.center" timestamp="1728713629993">
+    <state width="1493" height="118" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1728894070855" />
+    <state width="1493" height="118" key="GridCell.Tab.1.center" timestamp="1728894070855">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="250" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1728713629993" />
-    <state width="1386" height="250" key="GridCell.Tab.1.left" timestamp="1728713629993">
+    <state width="1493" height="118" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1728894070855" />
+    <state width="1493" height="118" key="GridCell.Tab.1.left" timestamp="1728894070854">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="250" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1728713629993" />
-    <state width="1386" height="250" key="GridCell.Tab.1.right" timestamp="1728713629993">
+    <state width="1493" height="118" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1728894070854" />
+    <state width="1493" height="118" key="GridCell.Tab.1.right" timestamp="1728894070855">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="250" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1728713629993" />
-    <state x="335" y="137" key="Vcs.Push.Dialog.v2" timestamp="1728716884963">
+    <state width="1493" height="118" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1728894070855" />
+    <state x="335" y="137" key="Vcs.Push.Dialog.v2" timestamp="1728734920657">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="335" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1728716884963" />
+    <state x="335" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1728734920657" />
     <state x="285" y="133" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1728713253506">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
@@ -189,6 +256,10 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="152" y="65" key="new project wizard/0.0.1536.816@0.0.1536.816" timestamp="1728568920252" />
+    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup" timestamp="1728896711652">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup/0.0.1536.816@0.0.1536.816" timestamp="1728896711652" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -208,9 +279,39 @@
           <line>42</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
+          <line>123</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/thread/CompletableFutureDemo.java</url>
-          <line>95</line>
+          <line>98</line>
           <properties class="com.xu.code.practice.thread.CompletableFutureDemo" method="main">
             <option name="EMULATED" value="true" />
           </properties>
