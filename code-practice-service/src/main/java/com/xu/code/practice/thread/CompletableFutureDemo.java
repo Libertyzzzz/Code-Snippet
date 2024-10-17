@@ -96,6 +96,13 @@ public class CompletableFutureDemo {
         threadPool.shutdown();
 
     }
+    Integer res = 0;
+    Callable<Integer> callable = Executors.callable(new Runnable() {
+        @Override
+        public void run() {
+
+        }
+    }, res);
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         completableFutureTest();
         CompletableFutureDemo completableFutureDemo = new CompletableFutureDemo();

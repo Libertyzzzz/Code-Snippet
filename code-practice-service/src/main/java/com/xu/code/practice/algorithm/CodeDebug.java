@@ -192,6 +192,101 @@ public class CodeDebug {
         }
     }
 
+    // 矩阵置0
+    public void setZeroes(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int[][] visited = new int[m][n];
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(visited[i][j] == 1)
+                    continue;
+                if(matrix[i][j] == 0){
+                    if(visited[i][j] == 1)
+                        continue;
+                    for(int k = 0; k < n; k++){
+                        if(matrix[i][k] != 0){
+                            matrix[i][k] = 0;
+                            visited[i][k] = 1;
+                        }
+
+                    }
+                    for(int k = 0; k < m; k++){
+                        if(matrix[k][j] != 0){
+                            matrix[k][j] = 0;
+
+                            visited[k][j] = 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static boolean isAnagram(String s, String t) {
+        if(s.length() != t.length())
+            return false;
+        int n = s.length();
+        int[] count = new int[26];
+        for(int i = 0; i < n; i++){
+            char ch = s.charAt(i);
+            count[ch - 'a']++;
+        }
+        for(int i = 0; i < n; i++){
+            char ch = t.charAt(i);
+            count[ch - 'a']--;
+            if(count[ch - 'a'] < 0)
+                return false;
+        }
+        // for(int i = 0; i < 26; i++){
+        //     if(count[i] != 0)
+        //         return false;
+        // }
+        return true;
+    }
+
+    // 同构字符串--单词规律
+    public static boolean wordPattern(String pattern, String s) {
+        String[] words = s.split(" ");
+        Map<Character, String> patternToWords = new HashMap<>();
+        Map<String, Character> wordsToPattern = new HashMap<>();
+        int n = pattern.length();
+        for(int i = 0; i < n; i++){
+            char ch = pattern.charAt(i);
+            String curr = words[i];
+            if((patternToWords.keySet().contains(ch) && patternToWords.get(ch).equals(curr) ) || (wordsToPattern.keySet().contains(curr) &&wordsToPattern.get(curr) != ch )){
+                return false;
+            }
+            patternToWords.put(ch, curr);
+            wordsToPattern.put(curr, ch);
+
+        }
+        return true;
+    }
+
+    // 快乐字符串
+    public static boolean isHappy(int n) {
+        // 如果计算出的下一次结果在hash集中出现，说明进入了循环，不是快乐数
+        Set<Integer> seen = new HashSet<>();
+        while(n != 1){
+            n = getNext(n);
+            if(seen.contains(n))
+                return false;
+            seen.add(n);
+        }
+        return true;
+    }
+
+    public static int getNext(int n){
+        int sum = 0;
+        while(n != 0){
+            int r = n % 10;
+            sum += r * r;
+            n /= 10;
+        }
+        return sum;
+    }
+
 
     public static void main(String[] args) {
         int[] nums = {12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12};
@@ -202,11 +297,13 @@ public class CodeDebug {
         // minSubArrayLen(target, nums);
         // lengthOfLongestSubstring(s);
         // customizeSort();
-        spiralOrder(matrix);
+        // spiralOrder(matrix);
 
-        int[] arr = Arrays.copyOf(nums, 12);
-        System.out.println(Arrays.toString(arr));
-
+        // int[] arr = Arrays.copyOf(nums, 12);
+        // System.out.println(Arrays.toString(arr));
+        String s1 = "nl";
+        String s2 = "cx";
+        isAnagram(s1, s2);
     }
 
 }
