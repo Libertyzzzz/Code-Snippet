@@ -22,18 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fdf79da-d054-4e72-989d-819406459a88" name="Default Changelist" comment="feature/JUC: Completable Future practice">
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/proxy/DynamicHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/proxy/DynamicProxyDemoClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/proxy/DynamicProxyHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/proxy/ReflectionDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/proxy/StaticProxyDemoClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/service/IExecutionAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/service/impl/ProxyExecutionAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/service/impl/RealExecutionAction.java" afterDir="false" />
+    <list default="true" id="6fdf79da-d054-4e72-989d-819406459a88" name="Default Changelist" comment="feature/Basics: MultiThread; Memory model">
+      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/thread/VolatileAtomicityDemo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/thread/CompletableFutureDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/thread/CompletableFutureDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +36,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="Kotlin File" />
         <option value="Class" />
       </list>
     </option>
@@ -70,7 +63,13 @@
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.xu.code.practice" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.xu.code.practice.proxy" />
     </key>
@@ -89,8 +88,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CompletableFutureDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.thread.CompletableFutureDemo" />
+    <configuration name="FailAndeFastDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.collections.FailAndeFastDemo" />
+      <module name="code-practice-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xu.code.practice.collections.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PrintInOrderToThreeThreads" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.thread.PrintInOrderToThreeThreads" />
       <module name="code-practice-service" />
       <extension name="coverage">
         <pattern>
@@ -102,12 +114,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DynamicProxyDemoClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.proxy.DynamicProxyDemoClient" />
+    <configuration name="ThreadCommunications" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.thread.ThreadCommunications" />
       <module name="code-practice-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.xu.code.practice.proxy.*" />
+          <option name="PATTERN" value="com.xu.code.practice.thread.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -115,25 +127,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReflectionDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.proxy.ReflectionDemo" />
+    <configuration name="VolatileAtomicityDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.thread.VolatileAtomicityDemo" />
       <module name="code-practice-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.xu.code.practice.proxy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StaticProxyDemoClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xu.code.practice.proxy.StaticProxyDemoClient" />
-      <module name="code-practice-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xu.code.practice.proxy.*" />
+          <option name="PATTERN" value="com.xu.code.practice.thread.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -155,10 +154,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.CodeDebug" />
-        <item itemvalue="Application.DynamicProxyDemoClient" />
-        <item itemvalue="Application.ReflectionDemo" />
-        <item itemvalue="Application.StaticProxyDemoClient" />
-        <item itemvalue="Application.CompletableFutureDemo" />
+        <item itemvalue="Application.VolatileAtomicityDemo" />
+        <item itemvalue="Application.PrintInOrderToThreeThreads" />
+        <item itemvalue="Application.ThreadCommunications" />
+        <item itemvalue="Application.FailAndeFastDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -172,7 +171,9 @@
       <updated>1728568583691</updated>
       <workItem from="1728568585536" duration="2495000" />
       <workItem from="1728710896069" duration="2687000" />
-      <workItem from="1728716124345" duration="29601000" />
+      <workItem from="1728716124345" duration="37499000" />
+      <workItem from="1728995759382" duration="38893000" />
+      <workItem from="1729314119525" duration="7458000" />
     </task>
     <task id="LOCAL-00001" summary="feature/JUC: Completable Future practice">
       <created>1728734915480</created>
@@ -181,7 +182,28 @@
       <option name="project" value="LOCAL" />
       <updated>1728734915480</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feature/algorithm: Two pointers; Sliding window; Dynamic proxy; Jav basics">
+      <created>1728959432641</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728959432642</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feature/Basics: Collections;">
+      <created>1728997747730</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728997747730</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feature/Basics: MultiThread; Memory model">
+      <created>1729172233903</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729172233903</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,53 +223,68 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feature/JUC: Completable Future practice" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature/JUC: Completable Future practice" />
+    <MESSAGE value="feature/algorithm: Two pointers; Sliding window; Dynamic proxy; Jav basics" />
+    <MESSAGE value="feature/Basics: Collections;" />
+    <MESSAGE value="feature/Basics: MultiThread; Memory model" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature/Basics: MultiThread; Memory model" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="548" y="110" key="#com.intellij.ide.util.MemberChooser" timestamp="1728895560791">
+    <state x="548" y="110" key="#com.intellij.ide.util.MemberChooser" timestamp="1729314311027">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="548" y="110" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1728895560791" />
+    <state x="548" y="110" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1729314311027" />
+    <state x="288" y="331" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1728982936738">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="288" y="331" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.816@0.0.1536.816" timestamp="1728982936738" />
+    <state x="513" y="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1728982939303">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="513" y="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.816@0.0.1536.816" timestamp="1728982939303" />
     <state width="257" height="380" key="Git.Branch.Popup" timestamp="1728569451538">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state width="257" height="380" key="Git.Branch.Popup/0.0.1536.816@0.0.1536.816" timestamp="1728569451538" />
-    <state width="1493" height="224" key="GridCell.Tab.0.bottom" timestamp="1728898613838">
+    <state width="1386" height="266" key="GridCell.Tab.0.bottom" timestamp="1729322491165">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1728898613838" />
-    <state width="1493" height="224" key="GridCell.Tab.0.center" timestamp="1728898613837">
+    <state width="1386" height="266" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1729322491165" />
+    <state width="1386" height="266" key="GridCell.Tab.0.center" timestamp="1729322491165">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1728898613837" />
-    <state width="1493" height="224" key="GridCell.Tab.0.left" timestamp="1728898613837">
+    <state width="1386" height="266" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1729322491165" />
+    <state width="1386" height="266" key="GridCell.Tab.0.left" timestamp="1729322491165">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1728898613837" />
-    <state width="1493" height="224" key="GridCell.Tab.0.right" timestamp="1728898613837">
+    <state width="1386" height="266" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1729322491165" />
+    <state width="1386" height="266" key="GridCell.Tab.0.right" timestamp="1729322491165">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1728898613837" />
-    <state width="1493" height="118" key="GridCell.Tab.1.bottom" timestamp="1728894070855">
+    <state width="1386" height="266" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1729322491165" />
+    <state width="1386" height="266" key="GridCell.Tab.1.bottom" timestamp="1729322491715">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="118" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1728894070855" />
-    <state width="1493" height="118" key="GridCell.Tab.1.center" timestamp="1728894070855">
+    <state width="1386" height="266" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1729322491715" />
+    <state width="1386" height="266" key="GridCell.Tab.1.center" timestamp="1729322491715">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="118" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1728894070855" />
-    <state width="1493" height="118" key="GridCell.Tab.1.left" timestamp="1728894070854">
+    <state width="1386" height="266" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1729322491715" />
+    <state width="1386" height="266" key="GridCell.Tab.1.left" timestamp="1729322491715">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="118" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1728894070854" />
-    <state width="1493" height="118" key="GridCell.Tab.1.right" timestamp="1728894070855">
+    <state width="1386" height="266" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1729322491715" />
+    <state width="1386" height="266" key="GridCell.Tab.1.right" timestamp="1729322491715">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="118" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1728894070855" />
-    <state x="335" y="137" key="Vcs.Push.Dialog.v2" timestamp="1728734920657">
+    <state width="1386" height="266" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1729322491715" />
+    <state x="335" y="137" key="Vcs.Push.Dialog.v2" timestamp="1729172483879">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="335" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1728734920657" />
+    <state x="335" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1729172483879" />
+    <state x="547" y="317" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1729323920226">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="547" y="317" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.816@0.0.1536.816" timestamp="1729323920226" />
     <state x="285" y="133" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1728713253506">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
@@ -256,10 +293,10 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="152" y="65" key="new project wizard/0.0.1536.816@0.0.1536.816" timestamp="1728568920252" />
-    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup" timestamp="1728896711652">
+    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup" timestamp="1729152049065">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup/0.0.1536.816@0.0.1536.816" timestamp="1728896711652" />
+    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup/0.0.1536.816@0.0.1536.816" timestamp="1729152049065" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -306,12 +343,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>123</line>
-          <option name="timeStamp" value="18" />
+          <line>395</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/thread/CompletableFutureDemo.java</url>
-          <line>98</line>
+          <line>105</line>
           <properties class="com.xu.code.practice.thread.CompletableFutureDemo" method="main">
             <option name="EMULATED" value="true" />
           </properties>

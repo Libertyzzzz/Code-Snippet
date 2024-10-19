@@ -35,7 +35,7 @@ public class CodeDebug {
         }
         return res;
     }
-    /*
+    /*q'q'q'q'q'q'q'q'q'q'q'q'q'q'q'q'q'q'q
         滑动窗口通用模板
         //外层循环扩展右边界，内层循环扩展左边界
         for (int l = 0, r = 0 ; r < n ; r++) {
@@ -277,6 +277,27 @@ public class CodeDebug {
         return true;
     }
 
+    // 最长连续序列
+ public static int longestConsecutive(int[] nums) {
+        if(nums.length < 2)
+            return nums.length;
+        Set<Integer> numSet = new HashSet<>();
+        for(int i = 0; i < nums.length; i++){
+            numSet.add(nums[i]);
+        }
+        int longestSeqeence = 1;
+        for(int i = 0; i < nums.length; i++){
+            int currSequence = 1;
+            if(!numSet.contains(nums[i] - 1)){
+                while(i < nums.length && numSet.contains(++nums[i]))
+                    currSequence++;
+            }
+            longestSeqeence = Math.max(currSequence, longestSeqeence);
+        }
+
+        return longestSeqeence;
+    }
+
     public static int getNext(int n){
         int sum = 0;
         while(n != 0){
@@ -287,12 +308,70 @@ public class CodeDebug {
         return sum;
     }
 
+    public static List<String> summaryRanges(int[] nums) {
+        List<String> res = new ArrayList<>();
+        int n = nums.length;
+
+        int start = 0, end  = 0;
+        while(end < n){
+            while((end+1 < n) && (nums[end+1] == nums[end] + 1)){
+                end++;
+            }
+            StringBuilder curr = new StringBuilder();
+            curr.append(nums[start]);
+            if(start != end){
+                curr.append("->");
+                curr.append(nums[end]);
+            }
+            start = end + 1;
+            end++;
+            res.add(curr.toString());
+        }
+        return res;
+    }
+
+    // 合并区间
+    public static int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (o1, o2) -> o1[0] - o2[0]);
+        int n = intervals.length;
+        List<int[]> res = new ArrayList<>();
+        int[] currInterval = intervals[0];
+        for(int i = 1; i < n; i++){
+            if(currInterval[1] >= intervals[i][0]){
+                currInterval[1] = Math.max(currInterval[1], intervals[i][1]);
+            }else{
+                res.add(currInterval);
+                currInterval = intervals[i];
+            }
+        }
+        res.add(currInterval);
+
+        return res.toArray(new int[res.size()][]);
+    }
+
+    // 用最少数量的箭引爆气球 (重点复习)
+    public static int findMinArrowShots(int[][] points) {
+        Arrays.sort(points, (o1, o2) -> o1[0] - o2[0]);
+        int n = points.length;
+        int[] currInterval = points[0];
+        int arrows = 1;
+        int currentEnd = points[0][1];
+        for (int i = 1; i < points.length; i++) {
+            // 如果当前气球的起始位置大于上一个箭的结束位置
+            if (points[i][0] > currentEnd) {
+                arrows++; // 需要发射新的箭
+                currentEnd = points[i][1]; // 更新箭的结束位置
+            }
+        }
+
+        return arrows;
+    }
 
     public static void main(String[] args) {
         int[] nums = {12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12};
-        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        int target = 213;
-        String s = "qrsvbspk";
+        int[][] matrix = {{1, 3}, {8, 10}, {2, 6}};
+        // int target = 213;
+        //String s = "qrsvbspk";
         // threeSum(nums);
         // minSubArrayLen(target, nums);
         // lengthOfLongestSubstring(s);
@@ -301,9 +380,20 @@ public class CodeDebug {
 
         // int[] arr = Arrays.copyOf(nums, 12);
         // System.out.println(Arrays.toString(arr));
-        String s1 = "nl";
-        String s2 = "cx";
-        isAnagram(s1, s2);
+        //String s1 = "nl";
+        // String s2 = "cx";
+        // isAnagram(s1, s2);
+        // int[] nums = {0,1,2,4,5,7};
+//        Arrays.sort(matrix, (o1, o2) -> o1[0] - o2[0]);
+//        for (int[] ints : matrix) {
+//            System.out.println(Arrays.toString(ints));
+//        }
+//        List<List<Integer>> res = new ArrayList<>();
+//        res.toArray(new int[2])
+
+        // summaryRanges(nums);
+        int[][] points = {{10, 16}, {2, 8}, {1, 6}, {7, 12}};
+        findMinArrowShots(points);
     }
 
 }
