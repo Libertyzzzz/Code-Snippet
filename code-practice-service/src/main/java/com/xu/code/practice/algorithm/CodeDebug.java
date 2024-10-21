@@ -1,6 +1,10 @@
 package com.xu.code.practice.algorithm;
 
+
+
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CodeDebug {
     private static final int num = 1;
@@ -367,6 +371,61 @@ public class CodeDebug {
         return arrows;
     }
 
+    public static boolean isValid(String s) {
+        Map<Character, Character> parenteeses = new HashMap<>();
+        parenteeses.put('(', ')');
+        parenteeses.put('{', '}');
+        parenteeses.put('[', ']');
+        if(s.length() < 2)
+            return false;
+        int n = s.length();
+        Deque<Character> stack = new LinkedList<>();
+        int i = 0;
+        while(i < n){
+            char ch = s.charAt(i);
+            if(parenteeses.containsKey(ch))
+                stack.push(ch);
+            else{
+                if(stack.isEmpty())
+                    return false;
+                char pop = stack.peek();
+                if(ch == parenteeses.get(pop))
+                    stack.pop();
+            }
+            i++;
+        }
+        return stack.isEmpty();
+    }
+
+    // 简化路径
+    public static String simplifyPath(String path) {
+        List<String> directories = Stream.of(path.split("/")).filter(item -> !item.isEmpty()).collect(Collectors.toList());
+        Deque<String> matches = new LinkedList<>();
+        int n = directories.size();
+        int i = 0;
+        while(i < n){
+            String curr = directories.get(i);
+            if((matches.isEmpty() && curr.equals("..")) || curr. equals(".") ){
+                i++;
+                continue;
+            }
+            //    continue;
+            if(!matches.isEmpty() && curr.equals(".."))
+                matches.pop();
+            else
+                matches.push(curr);
+            i++;
+        }
+        StringBuilder res = new StringBuilder();
+        int matchSize = matches.size();
+        for(int k = 0; k < matchSize; k++){
+            res.append("/");
+            res.append(matches.pollLast());
+        }
+        return matchSize != 0 ? res.toString() : "/";
+
+    }
+
     public static void main(String[] args) {
         int[] nums = {12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12};
         int[][] matrix = {{1, 3}, {8, 10}, {2, 6}};
@@ -392,8 +451,16 @@ public class CodeDebug {
 //        res.toArray(new int[2])
 
         // summaryRanges(nums);
-        int[][] points = {{10, 16}, {2, 8}, {1, 6}, {7, 12}};
-        findMinArrowShots(points);
+        // int[][] points = {{10, 16}, {2, 8}, {1, 6}, {7, 12}};
+        // findMinArrowShots(points);
+//        String s = "(])";
+//        isValid(s);
+//        String s1 = "/home//foo/";
+//        List<String> s2 = Stream.of(s1.split("/")).filter(item -> !item.isEmpty()).collect(Collectors.toList());
+//        Deque<String> matches = new LinkedList<>();
+        String s = "/../";
+        simplifyPath(s);
+        //System.out.println(simplifyPath(s));
     }
 
 }

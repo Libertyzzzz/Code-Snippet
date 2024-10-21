@@ -22,8 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fdf79da-d054-4e72-989d-819406459a88" name="Default Changelist" comment="feature/Basics: MultiThread; Memory model">
-      <change afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/thread/VolatileAtomicityDemo.java" afterDir="false" />
+    <list default="true" id="6fdf79da-d054-4e72-989d-819406459a88" name="Default Changelist" comment="feature/algorithm;: Interval series">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java" afterDir="false" />
     </list>
@@ -173,7 +172,7 @@
       <workItem from="1728710896069" duration="2687000" />
       <workItem from="1728716124345" duration="37499000" />
       <workItem from="1728995759382" duration="38893000" />
-      <workItem from="1729314119525" duration="7458000" />
+      <workItem from="1729314119525" duration="23396000" />
     </task>
     <task id="LOCAL-00001" summary="feature/JUC: Completable Future practice">
       <created>1728734915480</created>
@@ -203,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729172233903</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feature/algorithm;: Interval series">
+      <created>1729329290304</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729329290304</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +232,8 @@
     <MESSAGE value="feature/algorithm: Two pointers; Sliding window; Dynamic proxy; Jav basics" />
     <MESSAGE value="feature/Basics: Collections;" />
     <MESSAGE value="feature/Basics: MultiThread; Memory model" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature/Basics: MultiThread; Memory model" />
+    <MESSAGE value="feature/algorithm;: Interval series" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature/algorithm;: Interval series" />
   </component>
   <component name="WindowStateProjectService">
     <state x="548" y="110" key="#com.intellij.ide.util.MemberChooser" timestamp="1729314311027">
@@ -245,46 +252,46 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state width="257" height="380" key="Git.Branch.Popup/0.0.1536.816@0.0.1536.816" timestamp="1728569451538" />
-    <state width="1386" height="266" key="GridCell.Tab.0.bottom" timestamp="1729322491165">
+    <state width="1386" height="93" key="GridCell.Tab.0.bottom" timestamp="1729516095042">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="266" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1729322491165" />
-    <state width="1386" height="266" key="GridCell.Tab.0.center" timestamp="1729322491165">
+    <state width="1386" height="93" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
+    <state width="1386" height="93" key="GridCell.Tab.0.center" timestamp="1729516095042">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="266" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1729322491165" />
-    <state width="1386" height="266" key="GridCell.Tab.0.left" timestamp="1729322491165">
+    <state width="1386" height="93" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
+    <state width="1386" height="93" key="GridCell.Tab.0.left" timestamp="1729516095041">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="266" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1729322491165" />
-    <state width="1386" height="266" key="GridCell.Tab.0.right" timestamp="1729322491165">
+    <state width="1386" height="93" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1729516095041" />
+    <state width="1386" height="93" key="GridCell.Tab.0.right" timestamp="1729516095042">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="266" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1729322491165" />
-    <state width="1386" height="266" key="GridCell.Tab.1.bottom" timestamp="1729322491715">
+    <state width="1386" height="93" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
+    <state width="1386" height="93" key="GridCell.Tab.1.bottom" timestamp="1729516095042">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="266" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1729322491715" />
-    <state width="1386" height="266" key="GridCell.Tab.1.center" timestamp="1729322491715">
+    <state width="1386" height="93" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
+    <state width="1386" height="93" key="GridCell.Tab.1.center" timestamp="1729516095042">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="266" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1729322491715" />
-    <state width="1386" height="266" key="GridCell.Tab.1.left" timestamp="1729322491715">
+    <state width="1386" height="93" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
+    <state width="1386" height="93" key="GridCell.Tab.1.left" timestamp="1729516095042">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="266" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1729322491715" />
-    <state width="1386" height="266" key="GridCell.Tab.1.right" timestamp="1729322491715">
+    <state width="1386" height="93" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
+    <state width="1386" height="93" key="GridCell.Tab.1.right" timestamp="1729516095042">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="266" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1729322491715" />
-    <state x="335" y="137" key="Vcs.Push.Dialog.v2" timestamp="1729172483879">
+    <state width="1386" height="93" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
+    <state x="335" y="137" key="Vcs.Push.Dialog.v2" timestamp="1729516130478">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="335" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1729172483879" />
-    <state x="547" y="317" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1729323920226">
+    <state x="335" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1729516130478" />
+    <state x="547" y="317" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1729516133479">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="547" y="317" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.816@0.0.1536.816" timestamp="1729323920226" />
+    <state x="547" y="317" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.816@0.0.1536.816" timestamp="1729516133479" />
     <state x="285" y="133" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1728713253506">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
@@ -318,33 +325,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>16</line>
+          <line>20</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>14</line>
+          <line>18</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>30</line>
+          <line>34</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>33</line>
+          <line>37</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>17</line>
+          <line>21</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>395</line>
-          <option name="timeStamp" value="26" />
+          <line>461</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/thread/CompletableFutureDemo.java</url>
