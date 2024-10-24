@@ -2,6 +2,8 @@ package com.xu.code.practice.algorithm;
 
 
 
+import com.xu.code.practice.entity.ListNode;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -426,9 +428,107 @@ public class CodeDebug {
 
     }
 
+    public static int evalRPN(String[] tokens) {
+        Deque<Integer> stack = new LinkedList<>();
+        int n = tokens.length;
+        for(int i = 0; i < n; i++){
+            char curr = tokens[i].toCharArray()[0];
+            if(curr <= 9 && curr >= 0)
+                stack.push(Integer.valueOf(tokens[i]));
+            else{
+                Integer rightOperationNum = stack.pop();
+                Integer leftOperationNum = stack.pop();
+                Integer result = 0;
+                switch(curr) {
+                    case '+':
+                        result = leftOperationNum + rightOperationNum;
+                        break;
+                    case '-':
+                        result = leftOperationNum - rightOperationNum;
+                        break;
+                    case '*':
+                        result = leftOperationNum * rightOperationNum;
+                        break;
+                    case '/':
+                        result = leftOperationNum / rightOperationNum;
+                        break;
+                }
+                stack.push(result);
+            }
+        }
+        Integer.valueOf("123");
+        return stack.pop();
+
+    }
+
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode();
+        ListNode p = dummy;
+
+        int carry = 0;
+        while(l1 != null || l2 != null || carry != 0){
+            int num1 = l1 == null ? 0 : l1.val;
+            int num2 = l2 == null ? 0 : l2.val;
+            int currSum = num1 + num2 + carry;
+            int currVal = currSum  % 10;
+            carry = currSum / 10;
+            ListNode currNode = new ListNode();
+            currNode.val = currVal;
+            p.next = currNode;
+            p = p.next;
+            if(l1 != null)
+                l1 = l1.next;
+            if(l2 != null)
+                l2  = l2.next;
+        }
+        return dummy.next;
+
+    }
+
+    public static void moveZeroes(int[] nums) {
+
+        return;
+    }
+
+    // 回溯--分割回文串 (每天必看)
+    public static List<List<String>> partition(String s) {
+        List<List<String>> result = new ArrayList<>();
+        backtrack(result, new ArrayList<>(), s, 0);
+        return result;
+    }
+
+    public static void backtrack(List<List<String>> res, List<String> tempList, String s, int start){
+        if(start == s.length()){
+            res.add(new ArrayList<>(tempList));
+            return;
+        }
+        for(int end = start + 1; end <= s.length(); end++ ){
+            String nextSubstring = s.substring(start, end);
+            if(isPalindrome(nextSubstring)){
+                tempList.add(nextSubstring);
+                backtrack(res, tempList, s, end);
+                tempList.remove(tempList.size() - 1);
+            }
+        }
+    }
+
+    public static boolean isPalindrome(String s){
+        if(s.length() < 2)
+            return true;
+        int n = s.length();
+        int left = 0, right = n - 1;
+        while(left < right){
+            if(s.charAt(left) != s.charAt(right))
+                return false;
+            left++;
+            right--;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
-        int[] nums = {12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12};
-        int[][] matrix = {{1, 3}, {8, 10}, {2, 6}};
+        // int[] nums = {12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12};
+        // int[][] matrix = {{1, 3}, {8, 10}, {2, 6}};
         // int target = 213;
         //String s = "qrsvbspk";
         // threeSum(nums);
@@ -458,9 +558,26 @@ public class CodeDebug {
 //        String s1 = "/home//foo/";
 //        List<String> s2 = Stream.of(s1.split("/")).filter(item -> !item.isEmpty()).collect(Collectors.toList());
 //        Deque<String> matches = new LinkedList<>();
-        String s = "/../";
-        simplifyPath(s);
-        //System.out.println(simplifyPath(s));
+        // String s = "/../";
+        // simplifyPath(s);
+        // System.out.println(simplifyPath(s));
+        // String[] tokens = {"2","1","+","3","*"};
+        // evalRPN(tokens);
+        // int[] data1 = {2,4,3};
+        // int[] data2 = {5,6,4};
+        // ListNode l1 = ListNode.createLinkedList(data1);
+        // ListNode l2 = ListNode.createLinkedList(data2);
+        // addTwoNumbers(l1, l2);
+        int[] nums = {4,2,4,0,0,3,0,5,1,0};
+        moveZeroes(nums);
+
+//        Queue<Integer> heap = new PriorityQueue<>();
+//        Deque<Integer> deque = new LinkedList<>();
+//        Queue<Integer> queue = new LinkedList<>();
+//        queue.add()
+
+
+
     }
 
 }
