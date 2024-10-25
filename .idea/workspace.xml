@@ -22,7 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fdf79da-d054-4e72-989d-819406459a88" name="Default Changelist" comment="feature/algorithm;: Interval series">
+    <list default="true" id="6fdf79da-d054-4e72-989d-819406459a88" name="Default Changelist" comment="feature/algorithm;: Move zeros; Backtrack">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java" beforeDir="false" afterPath="$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java" afterDir="false" />
     </list>
@@ -61,6 +61,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -139,17 +140,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CodeDebug" />
@@ -173,6 +163,9 @@
       <workItem from="1728716124345" duration="37499000" />
       <workItem from="1728995759382" duration="38893000" />
       <workItem from="1729314119525" duration="23396000" />
+      <workItem from="1729579230155" duration="7212000" />
+      <workItem from="1729739029895" duration="10053000" />
+      <workItem from="1729859167040" duration="2032000" />
     </task>
     <task id="LOCAL-00001" summary="feature/JUC: Completable Future practice">
       <created>1728734915480</created>
@@ -209,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729329290304</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feature/algorithm;: Move zeros; Backtrack">
+      <created>1729779142733</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729779142733</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +233,8 @@
     <MESSAGE value="feature/Basics: Collections;" />
     <MESSAGE value="feature/Basics: MultiThread; Memory model" />
     <MESSAGE value="feature/algorithm;: Interval series" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature/algorithm;: Interval series" />
+    <MESSAGE value="feature/algorithm;: Move zeros; Backtrack" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature/algorithm;: Move zeros; Backtrack" />
   </component>
   <component name="WindowStateProjectService">
     <state x="548" y="110" key="#com.intellij.ide.util.MemberChooser" timestamp="1729314311027">
@@ -252,42 +253,46 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state width="257" height="380" key="Git.Branch.Popup/0.0.1536.816@0.0.1536.816" timestamp="1728569451538" />
-    <state width="1386" height="93" key="GridCell.Tab.0.bottom" timestamp="1729516095042">
+    <state width="1493" height="370" key="GridCell.Tab.0.bottom" timestamp="1729859136317">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="93" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
-    <state width="1386" height="93" key="GridCell.Tab.0.center" timestamp="1729516095042">
+    <state width="1493" height="370" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1729859136317" />
+    <state width="1493" height="370" key="GridCell.Tab.0.center" timestamp="1729859136317">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="93" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
-    <state width="1386" height="93" key="GridCell.Tab.0.left" timestamp="1729516095041">
+    <state width="1493" height="370" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1729859136317" />
+    <state width="1493" height="370" key="GridCell.Tab.0.left" timestamp="1729859136316">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="93" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1729516095041" />
-    <state width="1386" height="93" key="GridCell.Tab.0.right" timestamp="1729516095042">
+    <state width="1493" height="370" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1729859136316" />
+    <state width="1493" height="370" key="GridCell.Tab.0.right" timestamp="1729859136317">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="93" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
-    <state width="1386" height="93" key="GridCell.Tab.1.bottom" timestamp="1729516095042">
+    <state width="1493" height="370" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1729859136317" />
+    <state width="1493" height="370" key="GridCell.Tab.1.bottom" timestamp="1729859136317">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="93" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
-    <state width="1386" height="93" key="GridCell.Tab.1.center" timestamp="1729516095042">
+    <state width="1493" height="370" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1729859136317" />
+    <state width="1493" height="370" key="GridCell.Tab.1.center" timestamp="1729859136317">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="93" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
-    <state width="1386" height="93" key="GridCell.Tab.1.left" timestamp="1729516095042">
+    <state width="1493" height="370" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1729859136317" />
+    <state width="1493" height="370" key="GridCell.Tab.1.left" timestamp="1729859136317">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="93" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
-    <state width="1386" height="93" key="GridCell.Tab.1.right" timestamp="1729516095042">
+    <state width="1493" height="370" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1729859136317" />
+    <state width="1493" height="370" key="GridCell.Tab.1.right" timestamp="1729859136317">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1386" height="93" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1729516095042" />
-    <state x="335" y="137" key="Vcs.Push.Dialog.v2" timestamp="1729516130478">
+    <state width="1493" height="370" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1729859136317" />
+    <state x="270" y="53" key="SettingsEditor" timestamp="1729865262232">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="335" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1729516130478" />
+    <state x="270" y="53" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1729865262232" />
+    <state x="335" y="137" key="Vcs.Push.Dialog.v2" timestamp="1729779145078">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="335" y="137" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1729779145078" />
     <state x="547" y="317" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1729516133479">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
@@ -300,10 +305,14 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="152" y="65" key="new project wizard/0.0.1536.816@0.0.1536.816" timestamp="1728568920252" />
-    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup" timestamp="1729152049065">
+    <state x="425" y="185" key="run.anything.popup" timestamp="1729785604726">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup/0.0.1536.816@0.0.1536.816" timestamp="1729152049065" />
+    <state x="425" y="185" key="run.anything.popup/0.0.1536.816@0.0.1536.816" timestamp="1729785604726" />
+    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup" timestamp="1729775147396">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="431" y="137" width="672" height="678" key="search.everywhere.popup/0.0.1536.816@0.0.1536.816" timestamp="1729775147396" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -325,33 +334,38 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>20</line>
+          <line>22</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>18</line>
+          <line>20</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>34</line>
+          <line>36</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>37</line>
+          <line>39</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>21</line>
+          <line>23</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
-          <line>461</line>
-          <option name="timeStamp" value="31" />
+          <line>612</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/algorithm/CodeDebug.java</url>
+          <line>620</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/code-practice-service/src/main/java/com/xu/code/practice/thread/CompletableFutureDemo.java</url>

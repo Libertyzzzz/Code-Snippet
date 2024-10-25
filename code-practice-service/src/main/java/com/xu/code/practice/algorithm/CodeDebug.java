@@ -526,6 +526,47 @@ public class CodeDebug {
         return true;
     }
 
+    // 反转链表
+    public static ListNode reverseBetween(ListNode head, int left, int right) {
+        if(head == null || left == right)
+            return head;
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+        ListNode preLeft = dummy;
+        for(int i = 0; i < left - 1; i++){
+            preLeft = preLeft.next;
+        }
+        ListNode curr = preLeft.next;
+        // 当前反转节点的前驱节点
+        ListNode prev = null;
+        for(int i = 0; i < (right - left  + 1); i++){
+            //  移动至下一个需要逆转节点，防止断链
+            //if(curr == null)
+            //    break;
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        preLeft.next.next = curr;
+        preLeft.next = prev;
+
+        return dummy.next;
+
+    }
+
+    public static ListNode reverse(ListNode head){
+        ListNode dummy = new ListNode();
+        ListNode p = head;
+        while(head != null){
+            head = head.next;
+            p.next = dummy.next;
+            dummy.next = p;
+            p = head;
+        }
+        return dummy.next;
+    }
+
     public static void main(String[] args) {
         // int[] nums = {12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12};
         // int[][] matrix = {{1, 3}, {8, 10}, {2, 6}};
@@ -575,9 +616,9 @@ public class CodeDebug {
 //        Deque<Integer> deque = new LinkedList<>();
 //        Queue<Integer> queue = new LinkedList<>();
 //        queue.add()
-
-
-
+        int[] data = {1,2,3,4,5};
+        ListNode head =  ListNode.createLinkedList(data);
+        reverseBetween(head, 2, 4);
     }
 
 }
