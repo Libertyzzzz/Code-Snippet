@@ -567,6 +567,22 @@ public class CodeDebug {
         return dummy.next;
     }
 
+    // 560. 和为 K 的子数组 前缀和+哈希表
+    public int subarraySum(int[] nums, int k) {
+        Map<Integer, Integer> count = new HashMap<>();
+        count.put(0,1);
+        int prefixSum = 0;
+        int res = 0;
+        for(int num : nums){
+            prefixSum += num;
+            if(count.containsKey(prefixSum - k)){
+                res += count.get(prefixSum-k);
+            }
+            count.put(prefixSum, count.getOrDefault(prefixSum,0) + 1);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         // int[] nums = {12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12};
         // int[][] matrix = {{1, 3}, {8, 10}, {2, 6}};
@@ -619,6 +635,11 @@ public class CodeDebug {
         int[] data = {1,2,3,4,5};
         ListNode head =  ListNode.createLinkedList(data);
         reverseBetween(head, 2, 4);
+        String s = "bac";
+        char[] chars = s.toCharArray();
+        Arrays.sort(chars);
+        System.out.println(Arrays.toString(chars));
+
     }
 
 }
