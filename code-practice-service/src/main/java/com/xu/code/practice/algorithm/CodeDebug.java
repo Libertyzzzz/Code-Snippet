@@ -583,6 +583,156 @@ public class CodeDebug {
         return res;
     }
 
+    // 287. 寻找重复数
+    public static int findDuplicate(int[] nums) {
+        int slow = nums[0];
+        int fast = nums[0];
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }while(slow != fast);
+        slow = nums[0];
+        while(slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+
+    }
+
+    // 75. 颜色分类
+    public static void sortColors(int[] nums) {
+        int n = nums.length;
+        int left = 0, mid = 0, right = n-1;
+        while(mid <= right){
+            if(nums[mid] == 0){
+                swap(nums, left, mid);
+                left++;
+                mid++;
+            }else if(nums[mid] == 1){
+                mid++;
+            }else if(nums[mid] == 2){
+                swap(nums, right, mid);
+
+                right--;
+            }
+        }
+
+    }
+    public static void swap(int[] nums, int i, int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    // 169. 多数元素
+    public static int majorityElement(int[] nums) {
+        int candidate = nums[0];
+        int votes = 1;
+        for(int i = 1; i < nums.length; i++){
+            if(votes == 0)
+                candidate = nums[i];
+            if(candidate == nums[i])
+                votes++;
+            else
+                votes--;
+        }
+        return candidate;
+    }
+    // 31. 下一个排列
+    public void nextPermutation(int[] nums) {
+        int n = nums.length;
+        int i = n - 2;
+        // 从后往前遍历  找到第一个nums[i] < nums[i+1] 的数
+        while((i >= 0) && nums[i] >= nums[i+1])
+            i--;
+        // 从i的右边即(i+1)到末尾 找到第一个比nums[i]大的数
+
+        if(i >= 0){
+            int j = n - 1;
+            while(nums[j] <= nums[i])
+                j--;
+            swap(nums, i ,j);
+        }
+        // 反转(i+1)到末尾的数组
+        reverseBetween(nums, i+1, n-1);
+
+    }
+
+    public static void reverseBetween(int[] nums, int start, int end){
+        if(start == end)
+            return;
+        while(start < end){
+            swap(nums, start, end);
+            start++;
+            end--;
+        }
+    }
+
+    // 5. 最长回文子串
+    public String longestPalindrome(String s) {
+        if(s == null || s.length() < 1)
+            return "";
+        int left = 0, right = 0;
+        int n = s.length();
+        for(int i = 0; i < n; i++){
+            int len1 = expandAroundCenter(s, i, i);
+            int len2 = expandAroundCenter(s, i, i+1);
+            int len = Math.max(len1, len2);
+            if(len > right - left){
+                right = i + len / 2;
+                left = i - (len-1) / 2;
+            }
+        }
+        return s.substring(left, right+1);
+    }
+
+    // 中心扩展算法
+    public static int expandAroundCenter(String s, int left , int right){
+        while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)){
+            left--;
+            right++;
+        }
+        return (right-1) - (left+1) + 1;
+    }
+
+    // 72. 编辑距离
+    public int minDistance(String word1, String word2) {
+        int m = word1.length(), n = word2.length();
+        int[][] dp = new int[m+1][n+1];
+        for(int i = 0; i <= m; i++){
+            dp[i][0] = i;
+        }
+        for(int i = 0; i <= n; i++){
+            dp[0][i] = i;
+        }
+        for(int i = 1; i <= m; i++){
+            for(int j = 1; j <= n; j++){
+                if(word1.charAt(i-1) == word2.charAt(j-1))
+                    dp[i][j] = dp[i-1][j-1];
+                else
+                    dp[i][j] = 1 + Math.min(Math.min(dp[i-1][j], dp[i][j-1]), dp[i-1][j-1]);
+            }
+        }
+        return dp[m][n];
+    }
+
+    // 1143. 最长公共子序列
+    public int longestCommonSubsequence(String text1, String text2) {
+        int n1 = text1.length(), n2 = text2.length();
+        int[][] dp = new int[n1+1][n2+1];
+        for(int i = 1; i <= n1; i++){
+            for(int j = 1; j <= n2; j++ ){
+                if(text1.charAt(i-1) == text2.charAt(j-1))
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                else
+                    dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+
+            }
+        }
+        return dp[n1][n2];
+    }
+
     public static void main(String[] args) {
         // int[] nums = {12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12};
         // int[][] matrix = {{1, 3}, {8, 10}, {2, 6}};
