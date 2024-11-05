@@ -733,6 +733,82 @@ public class CodeDebug {
         return dp[n1][n2];
     }
 
+    public static void findAllSubstring(String s, int start){
+        if(start == s.length()){
+            return;
+        }
+        for(int end = start + 1; end <= s.length(); end++){
+            String nextSubstring = s.substring(start, end);
+            findAllSubstring(s, end);
+            System.out.println(nextSubstring);
+        }
+    }
+
+    // 239. 滑动窗口最大值
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int n = nums.length;
+        Deque<Integer> queue = new LinkedList<>();
+        int[] res = new int[n-k+1];
+        for(int i = 0; i < n;i++){
+            if(!queue.isEmpty() && queue.peek() < i-k+1)
+                queue.poll();
+            while(!queue.isEmpty() && nums[queue.peekLast()] < nums[i] )
+                queue.pollLast();
+            queue.offer(i);
+            if(i >= k-1)
+                res[i-k+1] = nums[queue.peek()];
+        }
+        return res;
+    }
+
+    // 53. 最大子数组和
+    public int maxSubArray(int[] nums) {
+        int n = nums.length;
+        int maxSum = nums[0];
+        int currSum = nums[0];
+        for(int i = 1; i < n; i++){
+            currSum = Math.max(nums[i], currSum + nums[i]);
+            maxSum = Math.max(currSum, maxSum);
+        }
+        return maxSum;
+    }
+
+    // 238. 除自身以外数组的乘积
+    public int[] productExceptSelf(int[] nums) {
+        int n = nums.length;
+        int[] leftProduct = new int[n];
+        leftProduct[0] = 1;
+        for(int i = 1; i < n; i++)
+            leftProduct[i] = leftProduct[i-1] * nums[i-1];
+        int[] rightProduct = new int[n];
+        rightProduct[n-1] = 1;
+        for(int i = n - 2; i >= 0; i--)
+            rightProduct[i] = rightProduct[i+1] * nums[i+1];
+        int[] res = new int[n];
+        for(int i = 0; i < n; i++)
+            res[i] = leftProduct[i] * rightProduct[i];
+        return res;
+    }
+
+    // 41. 缺失的第一个正数
+    public static int firstMissingPositive(int[] nums) {
+        int n = nums.length;
+        for(int i = 0; i < n; i++){
+            // 只考虑区间范围内的数据，即1-n,对于每个数i将其放到索引为(i-1)的位置上
+            // 每次会将一个数放到正确的位置上
+            // 由于每次刚好将(i+1)放在了i位置上，所以需要处理
+            while(nums[i] > 0 && nums[i] <= n &&  nums[nums[i] - 1] != nums[i]){
+                int temp = nums[i];
+                nums[i] = nums[nums[i] - 1];
+                nums[nums[i] - 1] = temp;
+            }
+        }
+        for(int i = 0; i < n; i++)
+            if(nums[i] != i+1)
+                return i+1;
+        return n+1;
+    }
+
     public static void main(String[] args) {
         // int[] nums = {12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12};
         // int[][] matrix = {{1, 3}, {8, 10}, {2, 6}};
@@ -775,21 +851,28 @@ public class CodeDebug {
         // ListNode l1 = ListNode.createLinkedList(data1);
         // ListNode l2 = ListNode.createLinkedList(data2);
         // addTwoNumbers(l1, l2);
-        int[] nums = {4,2,4,0,0,3,0,5,1,0};
-        moveZeroes(nums);
+        // int[] nums = {4,2,4,0,0,3,0,5,1,0};
+        // moveZeroes(nums);
 
 //        Queue<Integer> heap = new PriorityQueue<>();
 //        Deque<Integer> deque = new LinkedList<>();
 //        Queue<Integer> queue = new LinkedList<>();
 //        queue.add()
-        int[] data = {1,2,3,4,5};
-        ListNode head =  ListNode.createLinkedList(data);
-        reverseBetween(head, 2, 4);
-        String s = "bac";
-        char[] chars = s.toCharArray();
-        Arrays.sort(chars);
-        System.out.println(Arrays.toString(chars));
+//        int[] data = {1,2,3,4,5};
+//        ListNode head =  ListNode.createLinkedList(data);
+//        reverseBetween(head, 2, 4);
+//        String s = "bac";
+//        char[] chars = s.toCharArray();
+//        Arrays.sort(chars);
+//        System.out.println(Arrays.toString(chars));
+        // String s = "abc";
+        // findAllSubstring(s, 0);
+        int[] nums = {3,4,-1,1};
+        firstMissingPositive(nums);
+        Deque<Integer> queue = new LinkedList<>();
+        queue.size();
+        List<Integer> res = new ArrayList<>();
 
-    }
+     }
 
 }
