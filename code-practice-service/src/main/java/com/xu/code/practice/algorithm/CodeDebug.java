@@ -3,6 +3,7 @@ package com.xu.code.practice.algorithm;
 
 
 import com.xu.code.practice.entity.ListNode;
+import com.xu.code.practice.entity.TreeNode;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -807,6 +808,144 @@ public class CodeDebug {
             if(nums[i] != i+1)
                 return i+1;
         return n+1;
+    }
+    //
+
+    // 98. 验证二叉搜索树
+    Long pre = Long.MIN_VALUE;
+    public boolean isValidBST(TreeNode root) {
+        if(root == null ||(root.left == null && root.right == null))
+            return true;
+        return inOrder(root);
+
+    }
+    public boolean inOrder(TreeNode root){
+        if(root == null)
+            return true;
+        if(!(inOrder(root.left)))
+            return false;
+        if(pre >= root.val)
+            return false;
+        pre = (long)root.val;
+        return inOrder(root.right);
+    }
+
+    //230. 二叉搜索树中第 K 小的元素
+    int countdown = 0;
+    int res = 0;
+    public int kthSmallest(TreeNode root, int k) {
+        inOrder(root, k);
+        return res;
+    }
+
+    public void inOrder(TreeNode root, int k ){
+        if(root == null)
+            return ;
+        inOrder(root.left, k);
+        countdown++;
+        if(countdown == k){
+            res = root.val;
+            return;
+        }
+
+        inOrder(root.right, k);
+
+    }
+
+    // 108. 将有序数组转换为二叉搜索树
+    public TreeNode sortedArrayToBST(int[] nums) {
+
+        int n = nums.length;
+        return convert(nums,0, n-1);
+
+
+    }
+
+    public static TreeNode  convert(int[] nums, int left, int right){
+        if(left > right)
+            return null;
+        int mid = (left + right) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = convert(nums, left, mid-1);
+        root.right = convert(nums, mid + 1, right);
+        return root;
+    }
+
+    // 101. 对称二叉树
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null)
+            return true;
+        return isSymmetricTree(root.left, root.right);
+    }
+
+    public static boolean isSymmetricTree(TreeNode left, TreeNode right){
+        if(left == null && right == null)
+            return true;
+        if(left == null || right == null)
+            return false;
+        if(left.val != right.val)
+            return false;
+        return isSymmetricTree(left.left, right.right) && isSymmetricTree(left.right, right.left);
+    }
+
+
+    // 226. 翻转二叉树
+    public TreeNode invertTree(TreeNode root) {
+        if(root == null)
+            return null;
+        if(root.left == null && root.right == null)
+            return root;
+        TreeNode left = invertTree(root.right);
+        TreeNode right = invertTree(root.left);
+        root.left = left;
+        root.right = right;
+        return root;
+    }
+
+    // 102. 二叉树的层序遍历
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if(root == null)
+            return res;
+        Deque<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            List<Integer> currList = new ArrayList<>();
+            int size = queue.size();
+            while(size != 0){
+                TreeNode curr = queue.poll();
+                if(curr.left != null)
+                    queue.offer(curr.left);
+                if(curr.right != null)
+                    queue.offer(curr.right);
+                currList.add(curr.val);
+                size--;
+            }
+            res.add(currList);
+        }
+        return res;
+    }
+
+    // 199. 二叉树的右视图(利用层序遍历)
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if(root == null)
+            return res;
+        Deque<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            for(int i = 0; i < size; i++){
+                TreeNode curr = queue.poll();
+                if(i == size - 1)
+                    res.add(curr.val);
+                if(curr.left != null)
+                    queue.offer(curr.left);
+                if(curr.right != null)
+                    queue.offer(curr.right);
+            }
+        }
+        return res;
     }
 
     public static void main(String[] args) {

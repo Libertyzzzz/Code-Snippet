@@ -6,16 +6,16 @@ public class TreeNode {
      * @Author liberty
      * @Date 2024/11/4 10:17
      */
-    int val;
-    TreeNode  left;
-    TreeNode right;
-    TreeNode(){
+    public int val;
+    public TreeNode  left;
+    public TreeNode right;
+    public TreeNode(){
 
     }
-    TreeNode(int val){
+    public TreeNode(int val){
 
     }
-    TreeNode(int val, TreeNode left, TreeNode right){
+    public TreeNode(int val, TreeNode left, TreeNode right){
         this.val = val;
         this.left = left;
         this.right = right;

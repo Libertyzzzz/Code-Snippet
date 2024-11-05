@@ -5,7 +5,7 @@
     <groupId>com.xu.code</groupId>
     <artifactId>code-practice-service</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>code-practice-service</name>
+    <name>Code-Snippet</name>
     <description>code practice</description>
     <properties>
         <java.version>1.8</java.version>
