@@ -1,5 +1,7 @@
 package com.xu.code.practice.redis;
 
+import org.redisson.RedissonDelayedQueue;
+import org.redisson.api.RDelayedQueue;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 

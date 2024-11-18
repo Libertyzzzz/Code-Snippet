@@ -6,6 +6,5 @@ spring:
     database: 0
     host: localhost
     port: 6379
-  config:
-    import: optional: nacos:
+
 

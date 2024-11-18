@@ -4,7 +4,9 @@ package com.xu.code.practice.algorithm;
 
 import com.xu.code.practice.entity.ListNode;
 import com.xu.code.practice.entity.TreeNode;
+import org.apache.catalina.filters.ExpiresFilter;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -948,6 +950,281 @@ public class CodeDebug {
         return res;
     }
 
+    // 114. 二叉树展开为链表
+    public void flatten(TreeNode root) {
+        if(root == null)
+            return;
+        flatten(root.left);
+        flatten(root.right);
+        if(root.left != null){
+            TreeNode temp = root.right;
+            root.right = root.left;
+            root.left = null;
+            TreeNode curr = root.right;
+            while(curr.right != null)
+                curr = curr.right;
+            curr.right = temp;
+        }
+
+    }
+
+    //124. 二叉树中的最大路径和\
+    int maxPathSum = Integer.MIN_VALUE;
+    public int helper(TreeNode root){
+        if(root == null)
+            return 0;
+        int left = Math.max(helper(root.left), 0);
+        int right = Math.max(helper(root.right), 0);
+        int currPathSum = root.val + left + right;
+        maxPathSum = Math.max(currPathSum, maxPathSum);
+        return root.val + Math.max(left, right);
+
+    }
+
+    // 105. 从前序与中序遍历序列构造二叉树
+    private Map<Integer, Integer> inorderIndexMap;
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        // 构造哈希表以快速定位中序遍历中的根节点索引
+        inorderIndexMap = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) {
+            inorderIndexMap.put(inorder[i], i);
+        }
+        // 从0开始的preorder索引和inorder的范围构建树
+        return buildSubTree(preorder, 0, 0, inorder.length - 1);
+    }
+
+    private TreeNode buildSubTree(int[] preorder, int preorderIndex, int inorderLeft, int inorderRight) {
+        if (inorderLeft > inorderRight) {
+            return null;
+        }
+
+        // 获取根节点值和对应的TreeNode
+        int rootValue = preorder[preorderIndex];
+        TreeNode root = new TreeNode(rootValue);
+
+        // 获取根节点在inorder中的位置
+        int inorderIndex = inorderIndexMap.get(rootValue);
+
+        // 计算左子树节点的数量
+        int leftSubtreeSize = inorderIndex - inorderLeft;
+
+        // 递归构造左子树和右子树
+        root.left = buildSubTree(preorder, preorderIndex + 1, inorderLeft, inorderIndex - 1);
+        root.right = buildSubTree(preorder, preorderIndex + leftSubtreeSize + 1, inorderIndex + 1, inorderRight);
+
+        return root;
+    }
+
+    // 215. 数组中的第K个最大元素
+    public int findKthLargest(int[] nums, int k) {
+        // 桶排序嘿嘿
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for(int num : nums){
+            max = Math.max(num, max);
+            min = Math.min(num, min);
+        }
+        int[] count = new int[max- min + 1];
+        for(int num : nums)
+            count[num - min]++;
+        for(int i = count.length - 1; i >= 0; i--){
+            k -= count[i];
+            if(k <= 0)
+                return i + min;
+        }
+        return 10001;
+    }
+
+    // 回溯输出字典字符串(只有ab两个字符)
+    public static String findKthString(int n, int k) {
+        List<String> result = new ArrayList<>();
+        backtrack(result, new StringBuilder(), n, k);
+        return result.get(k - 1);
+    }
+
+    private static boolean backtrack(List<String> result, StringBuilder path, int n, int k) {
+        if (path.length() == n) {
+            System.out.println(path);
+            result.add(path.toString());
+            return result.size() == k; // 找到第 k 个时返回 true 以停止递归
+        }
+
+        for (char c : new char[]{'a', 'b'}) {
+            path.append(c);
+            if (backtrack(result, path, n, k)) return true; // 如果找到第 k 个，提前返回
+            path.deleteCharAt(path.length() - 1); // 回溯
+        }
+        return false;
+    }
+
+    public String longestWord(List<String> words) {
+        // 排序：首先按长度降序排列，如果长度相同按字典序升序
+        Collections.sort(words, (a, b) -> a.length() == b.length() ? a.compareTo(b) : b.length() - a.length());
+
+        // 用一个 HashSet 存储单词，方便 O(1) 查找
+        Set<String> wordSet = new HashSet<>();
+        // 遍历单词列表，逐个检查
+        for (String word : words) {
+            // 如果 word 的所有前缀都在 wordSet 中，说明 word 可以被构成
+            if (word.length() == 1 || wordSet.contains(word.substring(0, word.length() - 1))) {
+                return word;  // 返回当前的单词
+            }
+            wordSet.add(word);  // 将当前的单词加入 set 中
+        }
+
+        // 如果没有符合的返回空
+        return "";
+    }
+
+
+    public static int minPlayCount(int[] cards) {
+        // 统计每种牌的数量
+        Map<Integer, Integer> cardCount = new HashMap<>();
+        for (int card : cards) {
+            cardCount.put(card, cardCount.getOrDefault(card, 0) + 1);
+        }
+
+        List<Integer> cardTypes = new ArrayList<>(cardCount.keySet());
+        int n = cardTypes.size();
+
+        // 动态规划数组，2^n 表示所有可能的出牌组合
+        int[] dp = new int[1 << n];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;  // 空手牌的出牌次数为0
+
+        // 遍历所有状态
+        for (int state = 0; state < (1 << n); state++) {
+            if (dp[state] == Integer.MAX_VALUE) continue;
+
+            // 逐一查看每张牌的状态
+            for (int i = 0; i < n; i++) {
+                int card = cardTypes.get(i);
+                int num = cardCount.get(card);
+
+                // 若当前状态不包含该牌，则继续考虑以下出牌方案
+                if ((state & (1 << i)) == 0) {
+                    // 标记当前状态已经包含该牌
+                    int newState = state | (1 << i);
+
+                    // 四张相同的牌
+                    if (num >= 4) dp[newState] = Math.min(dp[newState], dp[state] + 1);
+
+                    // 三张相同的牌
+                    if (num >= 3) dp[newState] = Math.min(dp[newState], dp[state] + 1);
+
+                    // 对子
+                    if (num >= 2) dp[newState] = Math.min(dp[newState], dp[state] + 1);
+
+                    // 单张
+                    dp[newState] = Math.min(dp[newState], dp[state] + 1);
+                }
+            }
+        }
+
+        // dp[(1 << n) - 1] 存储了所有手牌出完的最小次数
+        return dp[(1 << n) - 1];
+    }
+
+    public static String longestWord(String[] words) {
+        Arrays.sort(words, (o1, o2) -> o1.length() == o2.length() ? o2.compareTo(o1) : o2.length() - o1.length());
+        Set<String> wordSet  = new HashSet<>(Arrays.asList(words));
+        for(String word : words){
+            wordSet.remove(word);
+            if(canFrom(word, wordSet))
+                return word;
+        }
+
+        return "";
+
+    }
+
+    // 判断当前单词是否能由其他单词组成
+    private static boolean canFrom(String word, Set<String> wordSet) {
+        if(word.length() == 0)
+            return true;
+        for(int i = 1; i < word.length(); i++){
+            if(wordSet.contains(word.substring(0, i)) && wordSet.contains(word.substring(i)))
+                return true;
+        }
+
+        return false;
+    }
+
+    public void backtrack(List<List<Integer>> res, List<Boolean> visited, List<Integer> curr, int[] nums){
+        if(curr.size() == nums.length){
+            res.add(new ArrayList<>(curr));
+            return;
+        }
+        StringBuilder r = new StringBuilder();
+        r.deleteCharAt(r.length() - 1);
+    }
+
+    public int[] searchRange(int[] nums, int target) {
+        int n = nums.length;
+        int left = 0, right = n -1;
+        int start = 0, end = 0;
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            if(nums[mid] == target){
+                return n % 2 == 0 ? new int[]{mid, mid + 1} : new int[]{mid-1, mid};
+            }else if( nums[mid] > target)
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+        return new int[]{-1, -1};
+    }
+
+    // 33. 搜索旋转排序数组
+    public static int search(int[] nums, int target) {
+        int n = nums.length;
+        int left = 0, right = n - 1;
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            if(nums[mid] == target)
+                return mid;
+            if(nums[left] <= nums[mid]){
+                if(nums[left] <= target && target < nums[mid]){
+                    right = mid - 1;
+                }else{
+                    left = mid + 1;
+                }
+            }else{
+                if(nums[mid] < target && target <= nums[right]){
+                    left = mid + 1;
+                }else
+                    right = mid - 1;
+            }
+
+        }
+        return -1;
+    }
+
+    // 153. 寻找旋转排序数组中的最小值
+    public static int findMin(int[] nums) {
+        int n = nums.length;
+        int left = 0, right = n-1;
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            if((mid == 0) && nums[mid] < nums[mid] +1)
+                return mid;
+            if((mid == n-1) && nums[mid] < nums[mid-1])
+                return mid;
+            if(nums[mid] < nums[mid] - 1 && nums[mid] < nums[mid] + 1)
+                return mid;
+            if(nums[left] <= nums[left]){
+                right = mid + 1;
+            }else{
+                left = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+
+    // 回溯输出字典字符串  重排链表 手写FIFO 用数组写 括号匹配（lc678），正反两次遍历搞定  手撕最小距离和
+    // 深挖项目
+
     public static void main(String[] args) {
         // int[] nums = {12, 28, 83, 4, 25, 26, 25, 2, 25, 25, 25, 12};
         // int[][] matrix = {{1, 3}, {8, 10}, {2, 6}};
@@ -1006,12 +1283,27 @@ public class CodeDebug {
 //        System.out.println(Arrays.toString(chars));
         // String s = "abc";
         // findAllSubstring(s, 0);
-        int[] nums = {3,4,-1,1};
-        firstMissingPositive(nums);
-        Deque<Integer> queue = new LinkedList<>();
-        queue.size();
-        List<Integer> res = new ArrayList<>();
+        // int[] nums = {3,4,-1,1};
+        // int[] cards = {1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4};
+        // System.out.println("最少出牌次数: " + minPlayCount(cards));
+//        Scanner scanner = new Scanner(System.in);
+//        // 单行输入
+//        String input = scanner.nextLine();
+//        // 多行输入
+//        int n = Integer.parseInt(scanner.nextLine());
+//        int[] arr = new int[n];
+//        for(int i = 0; i < n; i++)
+//            arr[i] = Integer.parseInt(scanner.nextLine());
+//        Map<Integer, Integer> map = new HashMap<>();
+        UUID uuid = UUID.randomUUID();
+        System.out.println(uuid);
 
-     }
+        String[] words = {"qlmql","qlmqlmqqlqmqqlq","mqqlqmqqlqmqqlq","mqqlq","mqqlqlmlsmqq","qmlmmmmsm","lmlsmqq","slmsqq","mslqssl","mqqlqmqqlq"};
+        longestWord(words);
+
+        int[] nums = {3,4,5,1,2};
+        findMin(nums);
+
+    }
 
 }
