@@ -1218,6 +1218,57 @@ public class CodeDebug {
         return -1;
     }
 
+    // 394. 字符串解码
+    public String decodeString(String s) {
+        Deque<Integer> countStack = new LinkedList<>(); // 用于存储重复次数
+        Deque<StringBuilder> stringStack = new LinkedList<>(); // 用于存储字符串
+        StringBuilder currentString = new StringBuilder(); // 当前构造的字符串
+        int k = 0; // 当前的重复次数
+        // a1[bc]d
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                // 构建重复次数
+                k = k * 10 + (c - '0');
+            } else if (c == '[') {
+                // 遇到 '['，将当前的 k 和 currentString 入栈
+                countStack.push(k);
+                stringStack.push(currentString);
+                // 重置 k 和 currentString
+                k = 0;
+                currentString = new StringBuilder();
+            } else if (c == ']') {
+                // 遇到 ']'，计算解码结果
+                int repeatTimes = countStack.pop();
+                StringBuilder decodedString = stringStack.pop();
+                // 将当前字符串重复 repeatTimes 次并追加到之前的字符串
+                for (int i = 0; i < repeatTimes; i++) {
+                    decodedString.append(currentString);
+                }
+                currentString = decodedString;
+            } else {
+                // 普通字符追加到当前字符串
+                currentString.append(c);
+            }
+        }
+
+        return currentString.toString();
+    }
+
+    // 739. 每日温度
+    public int[] dailyTemperatures(int[] temperatures) {
+        int n = temperatures.length;
+        int[] res = new int[2];
+        Deque<Integer> stack = new LinkedList<>();
+        for(int i = 0; i < n; i++){
+            while(!stack.isEmpty() && temperatures[i] > stack.peek()){
+                int preIndex = stack.pop();
+                res[preIndex] = i - preIndex;
+            }
+            stack.push(temperatures[i]);
+        }
+        return res;
+    }
+
 
     // 回溯输出字典字符串  重排链表 手写FIFO 用数组写 括号匹配（lc678），正反两次遍历搞定  手撕最小距离和
     // 深挖项目
