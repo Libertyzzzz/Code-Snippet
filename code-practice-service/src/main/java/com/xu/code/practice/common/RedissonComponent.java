@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.util.concurrent.ExecutorService;
 
 @Configuration
 @Slf4j
@@ -44,6 +45,7 @@ public class RedissonComponent {
         SingleServerConfig singleServerConfig  = config.useSingleServer()
                 .setAddress(address)
                 .setDatabase(0);
+        ExecutorService threadPoolExecutor = threadPoolComponent.getThreadPoolExecutor();
         return Redisson.create(config );
     }
 

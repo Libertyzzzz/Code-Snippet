@@ -1,7 +1,5 @@
 package com.xu.code.practice.thread;
 
-import com.xu.code.practice.common.ThreadPoolComponent;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

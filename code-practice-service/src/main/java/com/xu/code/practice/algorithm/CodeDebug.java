@@ -1269,6 +1269,274 @@ public class CodeDebug {
         return res;
     }
 
+    // 994. 腐烂的橘子
+    public static int orangesRotting(int[][] grid) {
+        int m = grid.length, n = grid[0].length;
+        Deque<int[]> queue = new LinkedList<>();
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == 2)
+                    queue.offer(new int[]{i, j});
+                else if(grid[i][j] == 0)
+                    grid[i][j] = 2;
+            }
+        }
+        int[][] directions = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+        int minutes = 0;
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            for(int i = 0; i < size; i++){
+                int[] curr = queue.poll();
+                for(int[] direction : directions){
+                    int nextRow = curr[0] + direction[0];
+                    int nextCol = curr[1] + direction[1];
+                    if(nextRow >= 0 && nextRow < m && nextCol >= 0 && nextCol < n && grid[nextRow][nextCol] == 1){
+                        grid[nextRow][nextCol] = 2;
+                        queue.offer(new int[]{nextRow,nextCol});
+                    }
+                }
+            }
+            if(!queue.isEmpty())
+                minutes++;
+        }
+        return queue.isEmpty() ? minutes : -1;
+    }
+
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> pre = new ArrayList<>();
+        for(int i = 1; i <= numRows; i++){
+            List<Integer> curr = new ArrayList<>(i);
+            // curr.add(1);
+            // curr.add(i - 1, 1);
+
+            // for(int j = 0; j < pre.size() - 1; j++){
+            //     int num = pre.get(j) + pre.get(j+1);
+            //     curr.add(num);
+            // }
+            curr.add(1);
+            for(int j = 0; j < pre.size() - 1; j++){
+                int num = pre.get(j) + pre.get(j+1);
+                curr.add(num);
+            }
+            if(i > 1)
+                curr.add(1);
+            res.add(curr);
+            pre = curr;
+        }
+        return res;
+    }
+
+    // 279. 完全平方数
+    public static int numSquares(int n) {
+        int[] dp = new int[n+1];
+        dp[1] = 1;
+        for(int i = 2; i <= n; i++){
+            int boundary = (int) Math.sqrt(i);
+            dp[i] = Integer.MAX_VALUE;
+            for(int j = 1; j <= boundary; j++){
+                dp[i] = Math.min(dp[i-j*j] + 1, dp[i]);
+            }
+        }
+        return dp[n];
+
+    }
+
+    // 763. 划分字母区间
+    public static List<Integer> partitionLabels(String s) {
+        int n = s.length();
+        int[] lastIndex = new int[26];
+        for(int i = 0; i < n; i++)
+            lastIndex[s.charAt(i) - 'a'] = i;
+        List<Integer> res = new ArrayList<>();
+        int start = 0, end = 0;
+        for(int i = 0; i < n; i++){
+            char curr = s.charAt(i);
+            end = lastIndex[curr - 'a'];
+            if(i == end){
+                res.add(end - start + 1);
+                start = end + 1;
+            }
+        }
+        return res;
+    }
+
+    // 25. K 个一组翻转链表
+    public static ListNode reverseKGroup(ListNode head, int k) {
+        if(head == null || k == 0)
+            return head;
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+        ListNode  preStart = dummy,  end = dummy;
+        int step = 0;
+        while(true){
+            while(step != k && end != null){
+                end = end.next;
+                step++;
+            }
+            if(end == null){
+                break;
+            }
+            ListNode start = preStart.next;
+            ListNode next = end.next;
+            end.next = null;
+            preStart.next = reverseList(start);
+
+            start.next = next;
+            preStart = start;
+            end = start;
+            step = 0;
+        }
+        return dummy.next;
+
+    }
+
+    // 翻转给定区间链表并返回头尾节点
+    public static ListNode reverseList(ListNode start){
+        ListNode pre = null;
+        ListNode curr = start;
+        while(curr != null){
+            ListNode next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+        return pre;
+    }
+
+    // 快速排序
+    public static void quickSort(int[] nums, int left, int right){
+        int pivot = nums[left];
+        int i = left, j = right;
+        // int[] nums = {5, 6, 7, 4, 2};
+        while(i < j){
+            while((i < j) && nums[j] > pivot)
+                j--;
+            while((i < j) && nums[i] < pivot)
+                i++;
+            if((i < j) && nums[i] == nums[j]){
+                i++;
+            }else{
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+            }
+
+        }
+        if(i - 1 > left)
+            quickSort(nums, left, i -1);
+        if(j + 1 < right)
+            quickSort(nums, j + 1, right);
+    }
+
+    // 快速选择算法求第k的数据(基于快排)
+    public static int quickSelect(int[] nums, int k){
+        int n = nums.length;
+        int targetIndex = n - k;
+        int left = 0, right = n - 1;
+        while(left <= right){
+            int pivotIndex = partition(nums, left, right);
+            if(pivotIndex == targetIndex){
+                return nums[pivotIndex];
+            }else if(pivotIndex < targetIndex){
+                left = pivotIndex + 1;
+            }else{
+                right = pivotIndex - 1;
+            }
+        }
+        return - 1;
+    }
+
+    public static int partition(int[] nums, int left, int right){
+        int pivot = nums[left];
+        int i = left, j = right;
+        while(i < j){
+            while((i < j) && nums[j] > pivot)
+                j--;
+            while((i < j) && nums[i] < pivot)
+                i++;
+            if((i < j) && nums[i] == nums[j]){
+                i++;
+            }else{
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+            }
+
+        }
+        return i;
+    }
+
+    // 452. 用最少数量的箭引爆气球
+    public static int findMinArrowShotss(int[][] points) {
+        if(points == null || points.length == 0)
+            return 0;
+        // 右边界排序
+        Arrays.sort(points, new Comparator<int[]>(){
+            @Override
+            public int compare(int[] o1, int[] o2){
+                if(o1[1] < o2[1])
+                    return -1;
+                else if(o1[1] > o2[1])
+                    return 1;
+                else
+                    return 0;
+            }
+        });
+        int arrows = 1;
+        int currentEnd = points[0][1];
+        for(int i = 1; i < points.length; i++){
+            if(points[i][0] > currentEnd){
+                arrows++;
+                currentEnd = points[i][1];
+            }
+        }
+        return arrows;
+    }
+
+
+    // 警察抓小偷
+    public static int minTimeToCatchThief(int policePosition, int thiefPosition) {
+        // 边界情况处理
+        if (policePosition == thiefPosition) {
+            return 0; // 警察与小偷位置相同，不需要移动
+        }
+        int[] directions = {1, -1, 2};
+        // 创建队列用于BFS
+        Queue<int[]> queue = new LinkedList<>();
+        // visited数组用于记录访问状态，避免重复访问
+        boolean[] visited = new boolean[100001];
+
+        // 初始状态加入队列（位置，时间）
+        queue.add(new int[]{policePosition, 0});
+        visited[policePosition] = true;
+
+        // BFS搜索
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int position = current[0];
+            int time = current[1];
+            if (position == thiefPosition) {
+                return time; // 找到小偷，返回时间
+            }
+            // 遍历所有可能的移动方向
+            for (int direction : directions) {
+                // 检查是否越界或已经访问过
+                int nextPosition = direction == 2 ? position * 2 : position + direction;
+                if (nextPosition >= 0 && nextPosition <= 100000 && !visited[nextPosition]) {
+                    queue.add(new int[]{nextPosition, time + 1});
+                    visited[nextPosition] = true;
+                }
+            }
+        }
+
+        return -1; // 如果无法到达小偷，返回-1
+    }
+
+
+
+    // 152. 乘积最大子数组
+    
 
     // 回溯输出字典字符串  重排链表 手写FIFO 用数组写 括号匹配（lc678），正反两次遍历搞定  手撕最小距离和
     // 深挖项目
@@ -1318,7 +1586,7 @@ public class CodeDebug {
         // int[] nums = {4,2,4,0,0,3,0,5,1,0};
         // moveZeroes(nums);
 
-//        Queue<Integer> heap = new PriorityQueue<>();
+        Queue<Integer> heap = new PriorityQueue<>((o1, o2) -> o2 - o1);
 //        Deque<Integer> deque = new LinkedList<>();
 //        Queue<Integer> queue = new LinkedList<>();
 //        queue.add()
@@ -1343,14 +1611,52 @@ public class CodeDebug {
 //        for(int i = 0; i < n; i++)
 //            arr[i] = Integer.parseInt(scanner.nextLine());
 //        Map<Integer, Integer> map = new HashMap<>();
-        UUID uuid = UUID.randomUUID();
-        System.out.println(uuid);
+//        UUID uuid = UUID.randomUUID();
+//        System.out.println(uuid);
+//
+//        String[] words = {"qlmql","qlmqlmqqlqmqqlq","mqqlqmqqlqmqqlq","mqqlq","mqqlqlmlsmqq","qmlmmmmsm","lmlsmqq","slmsqq","mslqssl","mqqlqmqqlq"};
+//        longestWord(words);
+//
+//        int[] nums = {3,4,5,1,2};
+//        findMin(nums);
+//        int[][] grid = {{2,1,1},{0,1,1},{1,0,1}};
+//        orangesRotting(grid);
+//
+//        String[] words = {"qlmql","qlmqlmqqlqmqqlq","mqqlqmqqlqmqqlq","mqqlq","mqqlqlmlsmqq","qmlmmmmsm","lmlsmqq","slmsqq","mslqssl","mqqlqmqqlq"};
+//        longestWord(words);
 
-        String[] words = {"qlmql","qlmqlmqqlqmqqlq","mqqlqmqqlqmqqlq","mqqlq","mqqlqlmlsmqq","qmlmmmmsm","lmlsmqq","slmsqq","mslqssl","mqqlqmqqlq"};
-        longestWord(words);
+//        int a = (int) Math.sqrt(12);
+//        List<Integer> res = new ArrayList<>(1);
+//        res.add(1);
+//        res.add(0, 1);
+//        System.out.println(res.size());
+//        numSquares(12);
+//        String s = "ababcbacadefegdehijhklij";
+//        partitionLabels(s);
+//        Map<Integer, Integer> cache = new HashMap<>();
+//        cache.size();
+//        int[] data = {1,2,3,4,5};
+//        ListNode head =  ListNode.createLinkedList(data);
+//        reverseKGroup(head, 2);
+        int[] nums = {5, 6, 7, 4, 5};
+        int res = quickSelect(nums, 2);
+        System.out.println(res);
+        int[][] points = {{10,16}, {2,8}, {1, 6}, {7, 12}};
+        findMinArrowShotss(points);
+        Arrays.sort(points, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if(o1[1] < o2[1])
+                        return 1;
+                else if(o1[1] > o2[1])
+                        return -1;
+                else
+                    return 0;
+            }
+        });
+        minTimeToCatchThief(1, 10);
+        System.out.println(minTimeToCatchThief(1, 10));
 
-        int[] nums = {3,4,5,1,2};
-        findMin(nums);
 
     }
 

@@ -14,7 +14,14 @@
     <name>code-practice-service</name>
     <description>code practice</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.nextify</groupId>
+            <artifactId>threadpool-spring-boot-starter</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
 
+    </dependencies>
 
     <build>
         <plugins>

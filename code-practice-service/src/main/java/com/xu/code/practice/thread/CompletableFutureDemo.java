@@ -1,14 +1,12 @@
 package com.xu.code.practice.thread;
 
-import com.xu.code.practice.common.ThreadPoolComponent;
+import com.nextify.autoconfigure.ThreadPoolComponent;
 import com.xu.code.practice.entity.GeneralEntity;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.*;
 
 @Component
@@ -71,7 +69,7 @@ public class CompletableFutureDemo {
     }
 
     public void compare() throws ExecutionException, InterruptedException {
-        ExecutorService threadPool =threadPoolComponent.getThreadPool();
+        ExecutorService threadPool =threadPoolComponent.getThreadPoolExecutor();
         long startFuture = System.currentTimeMillis();
         Future<Long> future = threadPool.submit(() -> {
             return fibnacci(45);

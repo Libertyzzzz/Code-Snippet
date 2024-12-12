@@ -35,4 +35,16 @@ public class SharedResource {
         notify();  // 唤醒生产者线程
     }
 
+    public static void main(String[] args) {
+        SharedResource sharedResource = new SharedResource();
+        Thread producer = new Thread(() -> {
+            sharedResource.produce();
+        });
+        Thread consumer = new Thread(() ->{
+            sharedResource.consume();
+        });
+        producer.start();
+        consumer.start();
+    }
+
 }
