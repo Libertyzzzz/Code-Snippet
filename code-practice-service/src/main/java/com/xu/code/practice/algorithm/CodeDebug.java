@@ -1533,6 +1533,115 @@ public class CodeDebug {
         return -1; // 如果无法到达小偷，返回-1
     }
 
+    public static int firstZeroOneStringPosition(String s){
+        int n = s.length();
+        int left = 0, right = n -1;
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            if(s.charAt(mid) == '0' && s.charAt(mid+1) == '1')
+                return mid;
+            if(s.charAt(mid) == '0')
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        return -1;
+    }
+
+    // 212. 单词搜索 II
+    static int[][] directions = {{-1,0}, {0, -1}, {1, 0}, {0,1}};
+    public static List<String> findWords(char[][] board, String[] words) {
+        List<String> res = new ArrayList<>();
+        if(board == null || board.length == 0 || words == null || words.length == 0)
+            return res;
+//        Set<String> foundWords = new HashSet<>();
+//        for(String word : words){
+//
+//            for(int i = 0; i < board.length; i++){
+//                if(foundWords.contains(word))
+//                    break;
+//                for(int j = 0; j < board[0].length; j++){
+//                    if(search(board, word, 0, i, j)){
+//                        res.add(word);
+//                        foundWords.add(word);
+//                        break;
+//                    }
+//
+//                }
+//            }
+//        }
+        // 前缀树优化
+        root = new TrieNode();
+        for(String word : words)
+            insert(word);
+        for(int i = 0; i < board.length; i++){
+            for(int j = 0; j < board[0].length; j++){
+                if(root.children.containsKey(board[i][j]))
+                    search(board, root, i, j, res);
+            }
+        }
+        return res;
+    }
+
+    public static   boolean search(char[][] board, String word, int index, int row, int col){
+        if(index == word.length())
+            return true;
+        if(row < 0 || row >= board.length || col < 0 || col >= board[0].length || board[row][col] != word.charAt(index))
+            return false;
+        char temp = board[row][col];
+        board[row][col] = '#';
+        for(int[] direction : directions){
+            int nextRow = row + direction[0];
+            int nextCol = col + direction[1];
+            if(search(board, word, index + 1, nextRow, nextCol))
+                return true;
+        }
+        board[row][col] = temp;
+        return false;
+    }
+
+    // 前缀树优化
+    // 定义前缀树
+    private static class TrieNode{
+        Map<Character, TrieNode> children = new HashMap<>();
+        String word = null;
+    }
+
+    private static TrieNode root;
+    public static void insert(String word){
+        TrieNode curr = root;
+        for(int i = 0; i < word.length(); i++){
+            char ch = word.charAt(i);
+            // if(curr.children.get(ch) == null)
+            //     curr.children.get(ch) = new TrieNode();
+            curr.children.putIfAbsent(ch, new TrieNode());
+            curr = curr.children.get(ch);
+        }
+        curr.word = word;
+    }
+
+    public static void search(char[][] board, TrieNode node, int row, int col, List<String> res){
+        if(row < 0 || row >= board.length || col < 0 || col >= board[0].length)
+            return;
+        char ch = board[row][col];
+        if(ch == '#' || !node.children.containsKey(ch))
+            return;
+
+        board[row][col] = '#';
+        TrieNode curr = node.children.get(ch);
+        if(curr.word != null){
+            res.add(curr.word);
+            curr.word = null;
+        }
+
+
+        for(int[] direction : directions){
+            int nextRow = row + direction[0];
+            int nextCol = col + direction[1];
+            search(board,  curr, nextRow, nextCol, res);
+        }
+        board[row][col] = ch;
+    }
 
 
     // 152. 乘积最大子数组
@@ -1586,7 +1695,7 @@ public class CodeDebug {
         // int[] nums = {4,2,4,0,0,3,0,5,1,0};
         // moveZeroes(nums);
 
-        Queue<Integer> heap = new PriorityQueue<>((o1, o2) -> o2 - o1);
+//        Queue<Integer> heap = new PriorityQueue<>((o1, o2) -> o2 - o1);
 //        Deque<Integer> deque = new LinkedList<>();
 //        Queue<Integer> queue = new LinkedList<>();
 //        queue.add()
@@ -1638,24 +1747,34 @@ public class CodeDebug {
 //        int[] data = {1,2,3,4,5};
 //        ListNode head =  ListNode.createLinkedList(data);
 //        reverseKGroup(head, 2);
-        int[] nums = {5, 6, 7, 4, 5};
-        int res = quickSelect(nums, 2);
-        System.out.println(res);
-        int[][] points = {{10,16}, {2,8}, {1, 6}, {7, 12}};
-        findMinArrowShotss(points);
-        Arrays.sort(points, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[1] < o2[1])
-                        return 1;
-                else if(o1[1] > o2[1])
-                        return -1;
-                else
-                    return 0;
-            }
-        });
-        minTimeToCatchThief(1, 10);
-        System.out.println(minTimeToCatchThief(1, 10));
+//        int[] nums = {5, 6, 7, 4, 5};
+//        int res = quickSelect(nums, 2);
+//        // System.out.println(res);
+//        int[][] points = {{10,16}, {2,8}, {1, 6}, {7, 12}};
+//        findMinArrowShotss(points);
+//        Arrays.sort(points, new Comparator<int[]>() {
+//            @Override
+//            public int compare(int[] o1, int[] o2) {
+//                if(o1[1] < o2[1])
+//                        return 1;
+//                else if(o1[1] > o2[1])
+//                        return -1;
+//                else
+//                    return 0;
+//            }
+//        });
+//        minTimeToCatchThief(1, 10);
+//        // System.out.println(minTimeToCatchThief(1, 10));
+//        Deque<TreeNode> queue = new LinkedList<>();
+//        Queue<TreeNode> stack = new LinkedList<>();
+//        List<Integer> currList = new ArrayList<>();
+//        List<String> wordDict = new ArrayList<>();
+//        Set<String> set = new HashSet<>();
+//        Collections.sort(wordDict, ((o1, o2) -> o2.length() - o1.length()));
+//        char[][] board = {{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'},{'i','f','l','v'}};
+//        String[] words = {"oath","pea","eat","rain"};
+//        findWords(board, words);
+
 
 
     }
