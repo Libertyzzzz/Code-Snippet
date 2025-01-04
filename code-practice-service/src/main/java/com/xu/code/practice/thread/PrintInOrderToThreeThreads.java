@@ -16,6 +16,11 @@ public class PrintInOrderToThreeThreads {
         firstThread.start();
         secondThread.start();
         thirdThread.start();
+
+        // 可以看到如果直接执行run()方法，只是一个正常的函数调用，会在主线程中同步执行这个方法,并不会异步开启线程去执行
+        // 本质上就是一个普通的方法调用，和线程同步没有关系
+        PrintThread thread = new PrintThread(sharedPointer, 1);
+        thread.run();
     }
 
 }
