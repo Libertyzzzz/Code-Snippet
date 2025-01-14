@@ -4,6 +4,7 @@ package com.xu.code.practice.algorithm;
 import com.xu.code.practice.entity.ListNode;
 import com.xu.code.practice.entity.TreeNode;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -1643,6 +1644,27 @@ public class CodeDebug {
         board[row][col] = ch;
     }
 
+    public static List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>();
+        for(int i = 0; i < nums1.length; i++){
+
+            minHeap.offer(new int[]{nums1[i], nums2[0], 0});
+        }
+
+        List<List<Integer>> res = new ArrayList<>();
+        while(k-- > 0 && !minHeap.isEmpty()){
+            int[] curr = minHeap.poll();
+            int index = curr[2];
+            res.add(Arrays.asList(curr[0], curr[1]));
+            if(index + 1 < nums2.length){
+                minHeap.offer(new int[]{curr[0], nums2[index+1], index + 1});
+            }
+        }
+
+        return res;
+
+    }
+
 
     // 152. 乘积最大子数组
     
@@ -1774,8 +1796,10 @@ public class CodeDebug {
 //        char[][] board = {{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'},{'i','f','l','v'}};
 //        String[] words = {"oath","pea","eat","rain"};
 //        findWords(board, words);
-
-
+         int[] nums1 = {1, 7, 11};
+         int[] nums2 = {2, 4, 6};
+         int k = 3;
+         kSmallestPairs(nums1, nums2, k);
 
     }
 

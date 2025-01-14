@@ -34,7 +34,7 @@ public class ZeroEvenOdd {
 
     public void even(IntConsumer printNumber) throws InterruptedException {
         synchronized(this){
-            for (int i = 2; i <= n * 2; i += 2) {
+            for (int i = 2; i <= n; i += 2) {
                 // 只有 num 是 0 时才打印 0
                 while (flag != 2) {
                     wait();
@@ -49,7 +49,7 @@ public class ZeroEvenOdd {
 
     public void odd(IntConsumer printNumber) throws InterruptedException {
         synchronized(this){
-            for (int i = 1; i <= n * 2; i += 2) {
+            for (int i = 1; i <= n ; i += 2) {
                 // 只有 num 是 0 时才打印 0
                 while (flag != 1) {
                     wait();
