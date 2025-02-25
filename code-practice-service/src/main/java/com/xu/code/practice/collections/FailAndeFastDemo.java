@@ -29,7 +29,7 @@ public class FailAndeFastDemo {
                 // userNames.remove(userName);
                 // 此时抛出异常 ConcurrentModificationException
                 userNames.add("garry");
-            }
+            }     
         }
 
         System.out.println(userNames);

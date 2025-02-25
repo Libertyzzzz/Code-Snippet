@@ -1665,6 +1665,42 @@ public class CodeDebug {
 
     }
 
+    public static List<Integer> findSubstring(String s, String[] words) {
+        if(s.length() < words.length * words[0].length())
+            return null;
+        Set<String> concatenatedSubstrings = new HashSet<>();
+        backtrack(words, concatenatedSubstrings, new StringBuilder(), new HashSet<>());
+        List<Integer> res = new ArrayList<>();
+        int step = words[0].length() * words.length;
+        for(int i = 0; i <= s.length() - step; i++){
+            if(concatenatedSubstrings.contains(s.substring(i, i + step)))
+                res.add(i);
+        }
+        return res;
+
+    }
+
+
+
+    public static void backtrack(String[] words, Set<String> res, StringBuilder curr, Set<Integer> visited){
+        int len = words.length * words[0].length();
+        if(curr.length() == len){
+            res.add(curr.toString());
+            return;
+        }
+        for(int i = 0; i < words.length; i++){
+            if(visited.contains(i))
+                continue;
+            visited.add(i);
+            curr.append(words[i]);
+            backtrack(words, res, curr, visited);
+            curr.delete(len - words[0].length(), len);
+            visited.remove(i);
+        }
+    }
+
+
+
 
     // 152. 乘积最大子数组
     
@@ -1796,10 +1832,16 @@ public class CodeDebug {
 //        char[][] board = {{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'},{'i','f','l','v'}};
 //        String[] words = {"oath","pea","eat","rain"};
 //        findWords(board, words);
-         int[] nums1 = {1, 7, 11};
-         int[] nums2 = {2, 4, 6};
-         int k = 3;
-         kSmallestPairs(nums1, nums2, k);
+//         int[] nums1 = {1, 7, 11};
+//         int[] nums2 = {2, 4, 6};
+//         int k = 3;
+//         kSmallestPairs(nums1, nums2, k);
+        String s = "barfoothefoobarman";
+        String[] words = {"foo","bar"};
+        findSubstring(s, words);
+        List<Integer> intervals = new ArrayList<>();
+        intervals.toArray();
+
 
     }
 
