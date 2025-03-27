@@ -1699,8 +1699,67 @@ public class CodeDebug {
         }
     }
 
+    static int count = 0;
+    public static int beautifulSubsets(int[] nums, int k) {
+        Arrays.sort(nums);
+        backtrack(nums, k, new ArrayList<>(), 0);
+        return count;
+    }
+
+    public static void backtrack(int[] nums, int k, List<Integer> curr, int index){
+        if(index == nums.length || nums[index] - k <= 0)
+            return;
+        for(int i = index; i < nums.length; i++){
+            curr.add(nums[i]);
+            count++;
+            backtrack(nums, k, curr, i + 1);
+            curr.remove(curr.size() - 1);
+        }
+    }
+    private static final  char[] VOWELLETTERS = {'a', 'e', 'i', 'o', 'u'};
+
+    public static int largestVariance(String s) {
+        int n = s.length();
+        int res = 0;
+        for(int i = 0; i < n; i++){
+            int[] count = new int[26];
+            int countMin = Integer.MAX_VALUE, countMax = Integer.MIN_VALUE;
+            for(int j = i; j < n; j++){
+                char ch = s.charAt(j);
+                count[ch - 'a']++;
+                countMin = Math.min(countMin, count[ch - 'a']);
+                countMax = Math.max(countMax, count[ch - 'a']);
+                if(countMax == j - i + 1)
+                    countMin = countMax;
+                res = Math.max(countMax - countMin, res);
+            }
 
 
+
+        }
+        return res;
+    }
+
+    public static List<List<Integer>> findMatrix(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        Set<Integer> visited = new HashSet<>();
+        int count = 0;
+        while(count < nums.length){
+            List<Integer> curr = new ArrayList<>();
+            for(int i = 0; i < nums.length; i++){
+                if(visited.contains(nums[i]) || nums[i] == -1)
+                    continue;
+                curr.add(nums[i]);
+                count++;
+                visited.add(nums[i]);
+                nums[i] = -1;
+            }
+            res.add(curr);
+            visited.clear();
+
+        }
+        return res;
+    }
 
     // 152. 乘积最大子数组
     
@@ -1836,11 +1895,20 @@ public class CodeDebug {
 //         int[] nums2 = {2, 4, 6};
 //         int k = 3;
 //         kSmallestPairs(nums1, nums2, k);
-        String s = "barfoothefoobarman";
-        String[] words = {"foo","bar"};
-        findSubstring(s, words);
-        List<Integer> intervals = new ArrayList<>();
-        intervals.toArray();
+//        String s = "barfoothefoobarman";
+//        String[] words = {"foo","bar"};
+//        findSubstring(s, words);
+//        List<Integer> intervals = new ArrayList<>();
+//        intervals.toArray();
+//        String s = "ababab";
+//        largestVariance(s);
+//        int[] nums = {1, 2, 3};
+        int[] nums = {1,3,4,1,2,3,1};
+        findMatrix(nums);
+
+
+        String s = "abc";
+        s.indexOf("a", 0);
 
 
     }

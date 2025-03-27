@@ -32,7 +32,7 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.xu.code.practice.CodePracticeServiceApplication</mainClass>
-                    <skip>true</skip>
+                    <skip>false</skip>
                 </configuration>
                 <executions>
                     <execution>

@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: local
+  application:
+    name: code-snippet
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.xu.code.practice.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 可选：启用 MyBatis SQL 日志输出
+logging:
+  level:
+    org.mybatis: info  # 显示配置加载详情
+    com.alibaba.nacos: debug
+
+pagehelper:
+  helper-dialect: mysql  # 数据库类型
+  reasonable: true      # 页码超出范围时返回边界值
+  support-methods-arguments: true  # 支持方法参数
+
+
