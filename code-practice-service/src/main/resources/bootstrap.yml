@@ -1,27 +1,25 @@
-server:
-  port: 8092
 spring:
   application:
     name: code-snippet  # 应用名称，用于 Nacos 服务注册和配置拉取
+  profiles:
+    active: local
   cloud:
     nacos:
       discovery:
         register-enabled: true
-        username: nacos  # Nacos 用户名
-        password: nacos  # Nacos 密码
+        username: nacos # Nacos 用户名
+        password: nacos # Nacos 密码
 
       config:
-        file-extension: yaml  # 配置文件格式（所有环境共享）
+        file-extension: yml  # 配置文件格式（所有环境共享）
         username: nacos  # Nacos 用户名
         password: nacos  # Nacos 密码
         namespace: public  # 命名空间（可选，所有环境共享）
         group: DEFAULT_GROUP  # 分组（可选，所有环境共享）
         refresh-enabled: true
+        enabled: true
         shared-configs:
-          - data-id: ${spring.application.name}.yaml
-            group: DEFAULT_GROUP
-            refresh: true
-          - data-id: ${spring.application.name}-${spring.profiles.active}.yaml
+          - data-id: ${spring.application.name}-${spring.profiles.active}.yml
             group: DEFAULT_GROUP
             refresh: true
 

@@ -3,6 +3,8 @@ spring:
     active: local
   application:
     name: code-snippet
+server:
+  port: 8092
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.xu.code.practice.entity
@@ -12,7 +14,9 @@ mybatis:
 logging:
   level:
     org.mybatis: info  # 显示配置加载详情
-    com.alibaba.nacos: debug
+    com.alibaba.nacos.client.config: WARN  # 针对 Nacos 配置模块，屏蔽 INFO 日志
+    com.alibaba.nacos: DEBUG              # 其他 Nacos 模块保持 DEBUG，便于调试
+
 
 pagehelper:
   helper-dialect: mysql  # 数据库类型

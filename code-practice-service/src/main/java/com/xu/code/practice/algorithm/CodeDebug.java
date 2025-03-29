@@ -1903,12 +1903,16 @@ public class CodeDebug {
 //        String s = "ababab";
 //        largestVariance(s);
 //        int[] nums = {1, 2, 3};
-        int[] nums = {1,3,4,1,2,3,1};
-        findMatrix(nums);
+//        int[] nums = {1,3,4,1,2,3,1};
+//        findMatrix(nums);
+//
+//
+//        String s = "abc";
+//        s.indexOf("a", 0);
+//        s.compareTo("acd");
+//        int[] edges = {3,3,4,2,3};
+//        longestCycle(edges);
 
-
-        String s = "abc";
-        s.indexOf("a", 0);
 
 
     }
