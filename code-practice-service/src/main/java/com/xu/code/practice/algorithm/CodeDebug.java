@@ -1761,8 +1761,94 @@ public class CodeDebug {
         return res;
     }
 
+    public static int longestPalindrome(String s, String t) {
+        int m = s.length();
+        int n = t.length();
+        int maxLength = 0;
+
+
+        maxLength = Math.max(maxLength, getMaxLength(s));
+
+        maxLength = Math.max(maxLength, getMaxLength(t));
+
+        for (int i = 0; i < m; i++) {
+            for (int len1 = 1; len1 <= m - i; len1++) {
+                String subS = s.substring(i, i + len1);
+
+                for (int j = 0; j < n; j++) {
+                    for (int len2 = 1; len2 <= n - j; len2++) {
+                        String subT = t.substring(j, j + len2);
+
+                        String combined = subS + subT;
+                        if (isPalindrome(combined)) {
+                            maxLength = Math.max(maxLength, combined.length());
+                        }
+                        combined = subT + subS;
+                        if (isPalindrome(combined)) {
+                            maxLength = Math.max(maxLength, combined.length());
+                        }
+                    }
+                }
+            }
+        }
+
+        return maxLength;
+
+    }
+
+    public static int getMaxLength(String s){
+        int n = s.length();
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            res = Math.max(res, expandAroundCenter(s, i, i));
+        }
+
+
+        for (int i = 0; i < n - 1; i++) {
+            res = Math.max(res, expandAroundCenter(s, i, i + 1));
+        }
+
+        return res;
+    }
+
+    private static long ans = 0;
+    public static long countGoodIntegers(int n, int k) {
+        backtrack(new StringBuilder(), n, k);
+        return ans;
+    }
+
+    public static void backtrack(StringBuilder curr, int n, int k){
+        if(curr.length() == n){
+            if(curr.charAt(0) == '0')
+                return;
+            long num = Long.valueOf(curr.toString());
+            if(isKPalindrome(num, k))
+                ans++;
+            return;
+        }
+
+        for(int i = 0; i <= 9; i++){
+            curr.append(i);
+            backtrack(curr, n, k);
+            curr.deleteCharAt(curr.length() - 1);
+        }
+    }
+
+    public static boolean isKPalindrome(Long x, int k){
+        if(x % k != 0)
+            return false;
+        long num = 0;
+        long originalNum = x;
+        while(x != 0){
+            long r = x % 10;
+            num = num * 10 + r;
+            x /= 10;
+        }
+        return num == originalNum;
+    }
+
     // 152. 乘积最大子数组
-    
+
 
     // 回溯输出字典字符串  重排链表 手写FIFO 用数组写 括号匹配（lc678），正反两次遍历搞定  手撕最小距离和
     // 深挖项目
@@ -1912,9 +1998,97 @@ public class CodeDebug {
 //        s.compareTo("acd");
 //        int[] edges = {3,3,4,2,3};
 //        longestCycle(edges);
+//        String s  = "n";
+//        String t = "no";
+//        int res = longestPalindrome(s, t);
+//        System.out.println(res);
+//        Map<String, Integer> map = new HashMap<>();
+//        Set<Integer> first = new HashSet<>();
+//        first.add(1);
+//        first.add(2);
+//        Set<Integer> second = new HashSet<>();
+//        second.add(2);
+//        second.add(1);
+//        System.out.println(first.equals(second));
+//
+//        List<List<Integer>> subsets = new ArrayList<>();
+//        subsets.add(new ArrayList<>());
+//        Deque<Integer> queue = new LinkedList<>();
+//        queue.peek();
+//        Set<Integer> set = new TreeSet<>((o1, o2) -> o1-o2);
+//        String s1 = "abc";
+//        s1.indexOf("bc", 1);
+//        s1.contains("AB");
 
+        char[] chars = {'a','a','b','b','c','c','c'};
+        compress(chars);
+        double sum = Double.MIN_VALUE;
+
+        int[] nums = {-1};
+        int k = 1;
+        findMaxAverage(nums, k);
 
 
     }
+
+    public static double findMaxAverage(int[] nums, int k) {
+        int n = nums.length;
+        int left = 0;
+        double sum = Double.MIN_VALUE;
+        double currSum = 0;
+        for(int right = 0; right < n; right++){
+            currSum += (double) nums[right];
+            if(right - left + 1 == k){
+                sum = Math.max(sum, currSum);
+                currSum -= nums[left];
+                left++;
+            }
+        }
+        return sum / k;
+    }
+
+    public static int compress(char[] chars) {
+        int read = 0, write = 0;
+        int n = chars.length;
+        while(read < n){
+            int start = read;
+            char curr = chars[read];
+            while(read < n && chars[read] == curr)
+                read++;
+            int count = read - start;
+            chars[write++] = curr;
+            if(count > 1){
+                String countStr = String.valueOf(count);
+                for(char ch : countStr.toCharArray())
+                    chars[write++] = ch;
+            }
+        }
+        return write;
+    }
+
+    public static String reverseWords(String s) {
+        String[] strs = s.trim().split(" ");
+        StringBuilder res = new StringBuilder();
+        for(int i = 0; i < strs.length; i++)
+            System.out.println(strs[i].length());
+        for(int i = strs.length - 1; i >= 0; i--){
+            res.append(strs[i].equals(" ") ? "" : strs[i]);
+            if(i != 0)
+                res.append(" ");
+        }
+        return res.toString();
+    }
+
+    public int gcd(int a, int b){
+        if(b == 0)
+            return a;
+        while(b != 0){
+           int r = a % b;
+           a = b;
+           b = r;
+        }
+        return a;
+    }
+
 
 }

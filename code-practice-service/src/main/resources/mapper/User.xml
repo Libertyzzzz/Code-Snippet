@@ -23,7 +23,7 @@
     <select id="selectById" parameterType="com.xu.code.practice.entity.QueryRequest" resultMap="UserResultMap">
         <![CDATA[
             SELECT id, name, height, weight, extras, create_time, update_time
-            FROM index_optimize_display
+            FROM ${tableName}
             WHERE id < #{id}
         ]]>
 
@@ -65,5 +65,11 @@
         FROM index_optimize_display
         WHERE name LIKE CONCAT('%', #{name}, '%')
     </select>
+
+    <insert id="insertUser" parameterType="com.xu.code.practice.entity.dto.UserDTO">
+        INSERT INTO ${tableName} (name, height, weight, extras)
+        VALUES (#{name}, #{height}, #{weight}, #{extras})
+
+    </insert>
 
 </mapper>
