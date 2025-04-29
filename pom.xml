@@ -19,6 +19,7 @@
 
     <modules>
         <module>code-practice-service</module>
+        <module>threadpool-spring-boot-starter</module>
     </modules>
     <dependencies>
         <dependency>
