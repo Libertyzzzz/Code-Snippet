@@ -2020,15 +2020,48 @@ public class CodeDebug {
 //        s1.indexOf("bc", 1);
 //        s1.contains("AB");
 
-        char[] chars = {'a','a','b','b','c','c','c'};
-        compress(chars);
-        double sum = Double.MIN_VALUE;
+//        char[] chars = {'a','a','b','b','c','c','c'};
+//        compress(chars);
+//        double sum = Double.MIN_VALUE;
+//
+//        int[] nums = {-1};
+//        int k = 1;
+//        findMaxAverage(nums, k);
+//
+//        Map<Integer, Integer> count1 = new HashMap<>();
+//        final Collection<Integer> values = count1.values();
+//        values.clear();
 
-        int[] nums = {-1};
-        int k = 1;
-        findMaxAverage(nums, k);
+        int[] asteroids = {5,10,-5};
+        asteroidCollision(asteroids);
 
+    }
 
+    public static int[] asteroidCollision(int[] asteroids) {
+        int n = asteroids.length;
+        Deque<Integer> stack = new LinkedList<>();
+        for(int asteriod : asteroids){
+            boolean destroyed = false;
+            while(!stack.isEmpty() && stack.peekLast() > 0 && asteriod < 0){
+                int top = stack.peekLast();
+                if(top < - asteriod){
+                    stack.pollLast();
+                    continue;
+                }else if(top == -asteriod){
+                    stack.pollLast();
+                }
+                destroyed = true;
+                break;
+
+            }
+            if(!destroyed)
+                stack.offerLast(asteriod);
+        }
+        int size = stack.size();
+        int[] res = new int[size];
+        for(int i = 0; i < size; i++)
+            res[i] = stack.poll();
+        return res;
     }
 
     public static double findMaxAverage(int[] nums, int k) {
