@@ -2032,9 +2032,26 @@ public class CodeDebug {
 //        final Collection<Integer> values = count1.values();
 //        values.clear();
 
-        int[] asteroids = {5,10,-5};
-        asteroidCollision(asteroids);
+//        int[] asteroids = {5,10,-5};
+//        asteroidCollision(asteroids);
+//        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
+
+        
+
+    }
+
+    public static ListNode deleteMiddle(ListNode head) {
+        ListNode dummy = head;
+        dummy.next = head;
+        ListNode fast = dummy, slow = dummy;
+        ListNode curr = dummy;
+        while(fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        slow.next = slow.next.next;
+        return dummy.next;
     }
 
     public static int[] asteroidCollision(int[] asteroids) {
