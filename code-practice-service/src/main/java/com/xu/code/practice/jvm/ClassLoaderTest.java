@@ -1,7 +1,6 @@
 package com.xu.code.practice.jvm;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-import org.apache.http.client.methods.CloseableHttpResponse;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,8 +23,8 @@ public class ClassLoaderTest {
                         return super.loadClass(name);
                     byte[] b = new byte[is.available()];
                     is.read(b);
-                    return defineClass(name, b,0, b.length);
-                }catch (IOException e){
+                    return defineClass(name, b, 0, b.length);
+                } catch (IOException e) {
                     throw new ClassNotFoundException(name);
                 }
             }
