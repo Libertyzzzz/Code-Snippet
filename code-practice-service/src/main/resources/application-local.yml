@@ -1,0 +1,16 @@
+spring:
+  redis:
+    username: root
+    database: 0
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://127.0.0.1:3306/chapter01?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+nacos-dynamic-config:
+  id: 5
+
+

@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: code-snippet  # 应用名称，用于 Nacos 服务注册和配置拉取
+  profiles:
+    active: local
+  cloud:
+    nacos:
+      discovery:
+        register-enabled: true
+        username: nacos # Nacos 用户名
+        password: nacos # Nacos 密码
+        enabled: false
+
+
+      config:
+        file-extension: yml  # 配置文件格式（所有环境共享）
+        username: nacos  # Nacos 用户名
+        password: nacos  # Nacos 密码
+        namespace: public  # 命名空间（可选，所有环境共享）
+        group: DEFAULT_GROUP  # 分组（可选，所有环境共享）
+        refresh-enabled: true
+        import-check:
+          enabled: false
+
+        shared-configs:
+          - data-id: ${spring.application.name}-${spring.profiles.active}.yml
+            group: DEFAULT_GROUP
+            refresh: true
+        enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
+
+
+
+# 本地开发环境
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR:host.docker.internal:8848}
+
+      config:
+        server-addr: ${NACOS_SERVER_ADDR:host.docker.internal:8848}
+        import-check:
+          enabled: false
+
+
+
+
+
+
+# 生产环境
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR:localhost:8848}
+      config:
+        server-addr: ${NACOS_SERVER_ADDR:localhost:8848}
