@@ -53,6 +53,14 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/Libertyzzzz/private-jars</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>

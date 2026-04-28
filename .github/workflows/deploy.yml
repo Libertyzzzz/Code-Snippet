@@ -30,7 +30,7 @@ jobs:
                     server-username: GITHUB_ACTOR
                     server-password: GITHUB_TOKEN
             - name: Build with Maven
-              run: mvn clean package -pl code-practice-service -am -DskipTests -U
+              run: mvn clean package -pl code-practice-service -am -DskipTests -U -s ~/.m2/settings.xml
               env:
                   # 必须把 token 注入给环境变量，这样上面那步才能生效
                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
