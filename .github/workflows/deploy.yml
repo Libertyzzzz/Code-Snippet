@@ -12,12 +12,19 @@ jobs:
             - name: Checkout Code
               uses: actions/checkout@v3
 
-            - name: Set up JDK 17
-              uses: Hex-sh/setup-java@v3 # 备用源，确保稳定性
+#            - name: Set up JDK 17
+#              uses: Hex-sh/setup-java@v3 # 备用源，确保稳定性
+#              with:
+#                  java-version: '17'
+#                  distribution: 'temurin'
+#                  cache: maven
+            - name: Set up JDK 8
+                # 使用 GitHub 官方认证的最稳版本
+              uses: actions/setup-java@v3
               with:
-                  java-version: '17'
-                  distribution: 'temurin'
-                  cache: maven
+                    java-version: '8'
+                    distribution: 'temurin'
+                    cache: maven
 
             - name: Configure Maven Settings
               run: |
