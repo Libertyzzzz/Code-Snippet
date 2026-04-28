@@ -49,7 +49,7 @@ jobs:
               with:
                   host: ${{ secrets.REMOTE_HOST }}
                   username: ${{ secrets.REMOTE_USER }}
-                  key: ${{ secrets.SERVER_SSH_KEY }}
+                  password: ${{ secrets.SERVER_SSH_KEY }}
                   source: "code-practice-service/target/*.jar"
                   target: "/home/dust/app/"
                   strip_components: 2
@@ -59,7 +59,7 @@ jobs:
               with:
                   host: ${{ secrets.REMOTE_HOST }}
                   username: ${{ secrets.REMOTE_USER }}
-                  key: ${{ secrets.SERVER_SSH_KEY }}
+                  password: ${{ secrets.SERVER_SSH_KEY }}
                   script: |
                       cd /home/dust/app/
                       # 释放 8080 端口进程
