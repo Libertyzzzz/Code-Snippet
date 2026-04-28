@@ -1,0 +1,52 @@
+name: Code Practice Deploy
+
+on:
+    push:
+        branches: [ "main" ]
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+
+            - name: Set up JDK 17
+              uses: Hex-sh/setup-java@v3 # 备用源，确保稳定性
+              with:
+                  java-version: '17'
+                  distribution: 'temurin'
+                  cache: maven
+
+            - name: Configure Maven Settings
+              run: |
+                  mkdir -p ~/.m2
+                  echo "<settings><servers><server><id>github</id><username>${{ github.actor }}</username><password>${{ secrets.GITHUB_TOKEN }}</password></server></servers></settings>" > ~/.m2/settings.xml
+
+            - name: Build Business Module
+                # -pl 指定模块, -am 构建依赖, -U 强制检查基座 SNAPSHOT 更新
+              run: mvn clean package -pl code-practice-service -am -DskipTests -U
+
+            - name: Upload JAR to Alibaba Cloud
+              uses: appleboy/scp-action@master
+              with:
+                  host: ${{ secrets.REMOTE_HOST }}
+                  username: ${{ secrets.REMOTE_USER }}
+                  key: ${{ secrets.SERVER_SSH_KEY }}
+                  source: "code-practice-service/target/*.jar"
+                  target: "/home/dust/app/"
+                  strip_components: 2
+
+            - name: Restart Application on Server
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.REMOTE_HOST }}
+                  username: ${{ secrets.REMOTE_USER }}
+                  key: ${{ secrets.SERVER_SSH_KEY }}
+                  script: |
+                      cd /home/dust/app/
+                      # 释放 8080 端口进程
+                      fuser -k 8080/tcp || true
+                      # 针对 2G 内存服务器优化 JVM 参数
+                      nohup java -Xms512m -Xmx512m -jar *.jar --spring.profiles.active=prod > app.log 2>&1 &
