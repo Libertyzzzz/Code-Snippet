@@ -54,6 +54,7 @@ jobs:
                   target: "/home/dust/app/"
                   strip_components: 2
 
+            # ECS 测试
             - name: Restart Application on Server
               uses: appleboy/ssh-action@master
               with:
